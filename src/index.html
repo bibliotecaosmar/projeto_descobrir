@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css?family=Righteous&display=swap" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" ></script>
+  <title>/Descobrir</title>
+</head>
+<body>
+  <div id="FlippedCards" hidden>0</div>
+  
+  <div id="hub" class="hub">
+    <tr>
+      <td>
+        <h1 id="Title" class="title">/Descobrir</h1>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <h4 class="points">Pontos: </h4>
+      </td>
+    </tr>
+    <tr>
+      <td>
+          <h4 id="Points">0</h4>
+      </td>
+    </tr>
+    <button id="start" class="startMenu" onclick="shuffle(slots)">Start</button>
+  </div>
+
+  <div class="bg">
+    
+    <div class="screen-game">
+    
+      <div id="Screen" hidden class="stage1">
+      
+        <tr>
+          <td id="nextLevel"></td>
+          <td>
+            <button id="button-1">
+              <img id="item-1" class="set" onclick="flip(1, permission)">
+            </button>
+          </td>
+          <td>
+            <button id="button-2">
+              <img id="item-2" class="set" onclick="flip(2, permission)">
+            </button>
+          </td>
+          <td>
+            <button id="button-3">
+              <img id="item-3" class="set" onclick="flip(3, permission)">
+            </button>
+          </td>
+          <td id="nextLevel"></td>
+        </tr>
+        <tr>
+          <td id="nextLevel"></td>
+          <td>
+            <button id="button-4">
+              <img id="item-4" class="set" onclick="flip(4, permission)">
+            </button>
+          </td>
+          <td>
+            <button id="button-5">
+              <img id="item-5" class="set" onclick="flip(5, permission)">
+            </button>
+          </td>
+          <td>
+            <button id="button-6">
+              <img id="item-6" class="set" onclick="flip(6, permission)">
+            </button>
+          </td>
+          <td id="nextLevel"></td>
+        </tr>
+
+      </div>
+
+    </div>
+      
+  </div>
+
+  <script src="js/functions.js"></script>
+
+</body>
+</html> 
