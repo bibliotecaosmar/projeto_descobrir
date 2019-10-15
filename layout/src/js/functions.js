@@ -2,6 +2,8 @@
  *  System Variables
  * =====================================================================
  */
+const slotNumber = 20
+
 function slots() {
   let slots = []
   for(let i = 0; i < 20; i++) {
@@ -48,13 +50,13 @@ const deductPoints        = (points, pointToLose) =>
  *  Services(Business Rules)
  * ===================================================================== 
  */
-const setCards = (order, slots) => {
-  for(let i = 0; i < slots.length; i++) {
-    HTML([i]).className = 'setdown_'+order[i]
+const setCards = (order) => {
+  for(let i = 0; i < slotsNumber; i++) {
+    HTML((i+1), 'slot-').className = 'setdown_slot-'+order[i]
   }
 }
-const setCardsNotLockeds = (slots) => {
-  for(let i = 0; i < slots.length; i++) {
+const setCardsNotLockeds = () => {
+  for(let i = 0; i < slotNumber; i++) {
     card = HTML([i]).className
     if( NOT( hasInArray( card, 'setdown_' ) &&
              hasInArray( card, 'locked_' ) ) ) {
@@ -116,30 +118,27 @@ const checkFlips = () => {
  *  Features
  * ===================================================================== 
  */
-function start () {
+function start(sequence) {
+
   HTML('main-button').style.display = "none"
 }
 
-function shuffle(elements, cards, setCards, sequence) {
-  let newOrder = []
-//  let sequence = sequencialIntNoRepeated(elements.length)
-
-  for(let i = 0; i < cards.length; i++) {
-    newOrder[i] = cards[parseInt(sequence[i])]
-  }
+function shuffle() {
+  let newOrder = map(parseInt, sequencialIntNoRepeated(slotsNumber))
   
-  setCards(newOrder, elements)
+  setCards(newOrder)
+
   HTML('Screen').setdown = false
   HTML('start').innerHTML = "Shuffle"
 }
 
-function flip(slot, permission) {
+function flip(slot) {
   if(permission) {
-    card = HTML(slot, 'item-').className
+    card = HTML(slot, 'slot-').className
     cardsFlippeds = parseInt(HTML('FlippedCards').innerHTML)
   
     if( hasInArray(card, 'setdown_') ) {
-      HTML(slot, 'item-').className = removeSetdown(card)
+      HTML(slot, 'slot-').className = removeSetdown(card)
       ++cardsFlippeds
       HTML('FlippedCards').innerHTML = cardsFlippeds.toString()
     }
