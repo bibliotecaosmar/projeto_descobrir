@@ -14,6 +14,7 @@
 <body>
   <div class="background-image m-0 p-0"></div>
 
+  <!-- Cover -->
   <div class="row">
 
     <div class="col-4"></div>
@@ -28,6 +29,11 @@
   
   </div>
   
+  <!-- Flipped cards -->
+  <div id="FlippedCards" hidden>0</div>  
+  <div id="CurrentBonus" hidden></div>
+  
+  <!-- Hub-points -->
   <div class="row ml-2">
     
     <div class="col">
@@ -35,7 +41,7 @@
       <div class="hub">
         <div class="points">
           <span>Pontos: </span>
-          <span>0</span>
+          <span id="points">0</span>
         </div>
       </div>
 
@@ -43,6 +49,7 @@
   
   </div>
   
+  <!-- Hub-chances -->
   <div class="row ml-2">
   
     <div class="col">
@@ -50,7 +57,7 @@
       <div class="hub">
         <div class="chances">
           <span>Tentativas: </span>
-          <span>0</span>
+          <span id="attempt">0</span>
         </div>
       </div>
 
@@ -58,6 +65,7 @@
   
   </div>
   
+  <!-- Hub-level -->
   <div class="row ml-2">
   
     <div class="col">
@@ -65,7 +73,7 @@
       <div class="hub">
         <div class="level">
           <span>Nível: </span>
-          <span>Caçador de Botão de Fechar</span>
+          <span id="level">Caçador de Botão de Fechar</span>
         </div>
       </div>
 
@@ -73,6 +81,7 @@
   
   </div>
   
+  <!-- Bônus -->
   <div class="row mt-3">
 
     <div class="col-2 mr-5"></div>
@@ -81,7 +90,7 @@
 
       <div class="row bonus-hub shadow">
         <div class="col-3 bonus-header text-center pt-1">bônus</div>
-        <div class="col-9 bonus-body pt-1">Botão de Fechar do Windows</div>
+        <div id="bonus-request" class="col-9 bonus-body pt-1"></div>
       </div>
 
     </div>
@@ -90,11 +99,12 @@
 
   </div>
 
+  <!-- Cards -->
   <div class="row mt-3">
 
     <div class="col-2 ml-4"></div>
 
-    <div class="col-8">
+    <div class="col-8 fixed">
 
       <div class="row">
         <div class="col pl-5 pr-5">
@@ -102,73 +112,35 @@
             <div class="col">
               <div class="row">
                 <div class="col pb-4">
-                  <div id="slot-1" class="set"></div>
+                  <div id="slot-1" class="set"  onclick="flip(1, permission)"></div>
                 </div>
               </div>
             </div>
             <div class="col">
               <div class="row">
                 <div class="col pb-4">
-                  <div id="slot-2" class="set"></div>
+                  <div id="slot-2" class="set"  onclick="flip(2, permission)"></div>
                 </div>
               </div>
             </div>
             <div class="col">
               <div class="row">
                 <div class="col pb-4">
-                  <div id="slot-3" class="set"></div>
+                  <div id="slot-3" class="set"  onclick="flip(3, permission)"></div>
                 </div>
               </div>
             </div>
             <div class="col">
               <div class="row">
                 <div class="col pb-4">
-                  <div id="slot-4" class="set"></div>
+                  <div id="slot-4" class="set"  onclick="flip(4, permission)"></div>
                 </div>
               </div>
             </div>
             <div class="col">
               <div class="row">
                 <div class="col pb-4">
-                  <div id="slot-5" class="set"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-    
-          <div class="row">
-            <div class="col">
-              <div class="row">
-                <div class="col pb-4">
-                  <div id="slot-6" class="set"></div>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="row">
-                <div class="col pb-4">
-                  <div id="slot-7" class="set"></div>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="row">
-                <div class="col pb-4">
-                  <div id="slot-8" class="set"></div>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="row">
-                <div class="col pb-4">
-                  <div id="slot-9" class="set"></div>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="row">
-                <div class="col pb-4">
-                  <div id="slot-10" class="set"></div>
+                  <div id="slot-5" class="set"  onclick="flip(5, permission)"></div>
                 </div>
               </div>
             </div>
@@ -178,35 +150,35 @@
             <div class="col">
               <div class="row">
                 <div class="col pb-4">
-                  <div id="slot-11" class="set"></div>
+                  <div id="slot-6" class="set"  onclick="flip(6, permission)"></div>
                 </div>
               </div>
             </div>
             <div class="col">
               <div class="row">
                 <div class="col pb-4">
-                  <div id="slot-12" class="set"></div>
+                  <div id="slot-7" class="set"  onclick="flip(7, permission)"></div>
                 </div>
               </div>
             </div>
             <div class="col">
               <div class="row">
                 <div class="col pb-4">
-                  <div id="slot-13" class="set"></div>
+                  <div id="slot-8" class="set"  onclick="flip(8, permission)"></div>
                 </div>
               </div>
             </div>
             <div class="col">
               <div class="row">
                 <div class="col pb-4">
-                  <div id="slot-14" class="set"></div>
+                  <div id="slot-9" class="set"  onclick="flip(9, permission)"></div>
                 </div>
               </div>
             </div>
             <div class="col">
               <div class="row">
                 <div class="col pb-4">
-                  <div id="slot-15" class="set"></div>
+                  <div id="slot-10" class="set"  onclick="flip(10, permission)"></div>
                 </div>
               </div>
             </div>
@@ -216,35 +188,73 @@
             <div class="col">
               <div class="row">
                 <div class="col pb-4">
-                  <div id="slot-16" class="set"></div>
+                  <div id="slot-11" class="set"  onclick="flip(11, permission)"></div>
                 </div>
               </div>
             </div>
             <div class="col">
               <div class="row">
                 <div class="col pb-4">
-                  <div id="slot-17" class="set"></div>
+                  <div id="slot-12" class="set"  onclick="flip(12, permission)"></div>
                 </div>
               </div>
             </div>
             <div class="col">
               <div class="row">
                 <div class="col pb-4">
-                  <div id="slot-18" class="set"></div>
+                  <div id="slot-13" class="set"  onclick="flip(13, permission)"></div>
                 </div>
               </div>
             </div>
             <div class="col">
               <div class="row">
                 <div class="col pb-4">
-                  <div id="slot-19" class="set"></div>
+                  <div id="slot-14" class="set"  onclick="flip(14, permission)"></div>
                 </div>
               </div>
             </div>
             <div class="col">
               <div class="row">
                 <div class="col pb-4">
-                  <div id="slot-20" class="set"></div>
+                  <div id="slot-15" class="set"  onclick="flip(15, permission)"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+    
+          <div class="row">
+            <div class="col">
+              <div class="row">
+                <div class="col pb-4">
+                  <div id="slot-16" class="set"  onclick="flip(16, permission)"></div>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="row">
+                <div class="col pb-4">
+                  <div id="slot-17" class="set"  onclick="flip(17, permission)"></div>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="row">
+                <div class="col pb-4">
+                  <div id="slot-18" class="set"  onclick="flip(18, permission)"></div>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="row">
+                <div class="col pb-4">
+                  <div id="slot-19" class="set"  onclick="flip(19, permission)"></div>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="row">
+                <div class="col pb-4">
+                  <div id="slot-20" class="set"  onclick="flip(20, permission)"></div>
                 </div>
               </div>
             </div>
@@ -259,10 +269,11 @@
 
   </div>
 
+  <!-- Main Button -->
   <div class="row">
     <div class="col-2"></div>
     <div class="col-8 pl-5">
-      <button id="start-button" type="button" class="main-button btn btn-primary btn-lg btn-block">Start</button>
+      <button id="main-button" type="button" class="main-button btn btn-primary btn-lg btn-block" onclick="startGame()">Start</button>
     </div>
     <div class="col-2"></div>
   </div>

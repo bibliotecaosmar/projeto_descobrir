@@ -101,7 +101,7 @@ $setdown: setdown- !default;
 $locked: locked- !default;
 
 div.set {
-  background: url(../asset/icons/icon-setcard.png) no-repeat;
+  background: url(../asset/icons/setcard.png) no-repeat;
   width: 90px;
   height: 90px;
 }
@@ -109,18 +109,24 @@ div.set {
 //
 @for $i from 1 through 20 {
   .#{$setdown}_#{$slot}-#{$i} {
-
+    background: url(../asset/icons/card.png) no-repeat;
+    width: 90px;
+    height: 90px;
   }
 }
 
 @for $i from 1 through 20 {
   .#{$slot}#{$i} {
-    //conteúdo a mostra(jogada)
+    background: url(../asset/icons/setdown-card.png) no-repeat;
+    width: 90px;
+    height: 90px;
   }
 }
 
 @for $i from 1 through 20 {
   .#{$locked}_#{$slot}-#{$i} {
-
+	background: url(../asset/icons/locked-card.png) no-repeat;
+    width: 90px;
+    height: 90px;
   }
 }
