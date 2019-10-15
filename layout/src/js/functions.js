@@ -2,10 +2,13 @@
  *  System Variables
  * =====================================================================
  */
-const slots     = ['item-1', 'item-2', 'item-3', 'item-4', 'item-5', 'item-6']
-const cards     = ['saber', 'archer', 'lancer', 'saber', 'archer', 'lancer']
-// const slots.length = slots.lenght
-// const cards.length    = cards.lenght
+function slots() {
+  let slots = []
+  for(let i = 0; i < 20; i++) {
+    slots.push(['slot-', i.toString()].join())
+  }
+}
+
 let permission  = true
 
 
@@ -16,8 +19,8 @@ let permission  = true
 const NOT   = (condition) => !condition
 const HTML  = (value, prefix = '') => ( document.getElementById(prefix + value) ) // require high order function
 
-const ifNotHasInArray = (array, value) => ( array.indexOf(value) === -1 )
-const ifInRange       = (array, range) => ( range >= array.length )
+const hasInArray = (array, value) => ( true ? (array.indexOf(value) === -1) : false )
+const inRange    = (array, range) => ( range >= array.length )
 
 /**
  *  Subprocess Functions
@@ -45,36 +48,36 @@ const deductPoints        = (points, pointToLose) =>
  *  Services(Business Rules)
  * ===================================================================== 
  */
-const setCards = (order, slots = slots) => {
+const setCards = (order, slots) => {
   for(let i = 0; i < slots.length; i++) {
     HTML([i]).className = 'setdown_'+order[i]
   }
 }
- const setCardsNotLockeds = (slots = slots) => {
+const setCardsNotLockeds = (slots) => {
   for(let i = 0; i < slots.length; i++) {
     card = HTML([i]).className
-    if( NOT( ifNotHasInArray(card, 'setdown_') ) || 
-        NOT( ifNotHasInArray(card, 'locked_') ) ) {
+    if( NOT( hasInArray( card, 'setdown_' ) &&
+             hasInArray( card, 'locked_' ) ) ) {
       HTML([i]).className = addSetdown(card)
     }
   }
 }
-const comparator = (slots = slots) => {
+const comparator = (slots) => {
   let flippedCards = []
   for(let i = 0; i < slots.length; i++) {
     card = HTML( slots[i] ).className
-    if( ifNotHasInArray( card,'setdown_' ) || 
-        ifNotHasInArray(card, 'locked_') ) {
-      flippedCards.push(card)
+    if( NOT( hasInArray( card, 'setdown_' ) &&
+             hasInArray( card, 'locked_' ) ) ) {
+      flippedCards.push( card )
     }
   }
   return true ? (cards[0] == cards[1]) : false
 }
-const lockCards = (slots = slots) => {
+const lockCards = (slots) => {
   for(let i = 0; i < slots.length; i++) {
     card = HTML( slots[i] ).className
-    if( NOT( ifNotHasInArray(card, 'setdown_') ) || 
-        NOT( ifNotHasInArray(card, 'locked_') ) ) {
+    if( NOT( hasInArray( card, 'setdown_' ) &&
+             hasInArray( card, 'locked_' ) ) ) {
       HTML( slots[i] ).className = addLocked(card)
     }
   }
@@ -83,8 +86,8 @@ const lockCards = (slots = slots) => {
 const sequencialIntNoRepeated = (range, array = []) => {
   while(array.length < range) {
     let x = randomNum()
-    if( NOT( ifNotHasInArray( array, x ) ) || 
-             ifInRange( array, range ) ) {
+    if( NOT( hasInArray( array, x ) ) ||
+             inRange( array, range ) ) {
       array.push(x)
     }
   }
@@ -98,11 +101,7 @@ const fail = () => {
   deductPoints()
   resetChance()
 }
-const checkFlips = (success = success,
-                    fail = fail, 
-                    comparator = comparator, 
-                    lockAll = lockAll, 
-                    unlockAll = unlockAll) => {
+const checkFlips = () => {
   if( HTML('FlippedCards').innerHTML == 2 ) {
     if( comparator() ) {
       success()
@@ -117,9 +116,13 @@ const checkFlips = (success = success,
  *  Features
  * ===================================================================== 
  */
-function shuffle(elements) {
+function start () {
+  HTML('main-button').style.display = "none"
+}
+
+function shuffle(elements, cards, setCards, sequence) {
   let newOrder = []
-  let sequence = sequencialIntNoRepeated(elements.length)
+//  let sequence = sequencialIntNoRepeated(elements.length)
 
   for(let i = 0; i < cards.length; i++) {
     newOrder[i] = cards[parseInt(sequence[i])]
@@ -135,7 +138,7 @@ function flip(slot, permission) {
     card = HTML(slot, 'item-').className
     cardsFlippeds = parseInt(HTML('FlippedCards').innerHTML)
   
-    if( ifNotHasInArray(card, 'setdown_') ) {
+    if( hasInArray(card, 'setdown_') ) {
       HTML(slot, 'item-').className = removeSetdown(card)
       ++cardsFlippeds
       HTML('FlippedCards').innerHTML = cardsFlippeds.toString()

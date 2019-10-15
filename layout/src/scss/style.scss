@@ -1,0 +1,126 @@
+/*
+*  System Variables
+* ========================================
+*/
+@font-face {
+  font-family: 'ocr';
+  src: url("../asset/fonts/OCRAStd.otf");
+}
+
+/*
+*  Color
+* ========================================
+*/
+$main-blue: #11439f;
+$support-white: #ffffff;
+$typing-black: black;
+
+$app-colors: (
+  "main-blue": $main-blue,
+  "support-white": $support-white,
+  "typing-black": $typing-black,
+);
+
+$bg: $main-blue;
+$title: $support-white;
+$hub-text: $support-white;
+$bonus-header: $main-blue;
+$bonus-body: $support-white;
+$bonus-header-text: $support-white;
+$bonus-body-text: $typing-black;
+$main-button: $support-white;
+$text-button: $typing-black;
+
+/*
+*  Static Elements
+* ========================================
+*/
+// Background Image
+div.bg-main-blue {
+  background-color: $bg;
+}
+
+div.background-image {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: url("../assets/background-image.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  background-color: $bg;
+}
+
+div.title {
+  font-family: 'ocr';
+  color: $title;
+  font-size: 45px;
+}
+
+div.hub {
+  font-family: 'ocr';
+  color: $hub-text;
+  font-size: 20px;
+}
+
+div.bonus-hub {
+  background-color: $bonus-body;
+  font-family: 'ocr';
+  font-size: 18px;
+  width: 100%;
+  height: 32px;
+  border-radius: 8px;
+}
+
+div.bonus-header {
+  background-color: $bonus-header;
+  color: $bonus-header-text;
+}
+
+div.bonus-body {
+  color: $bonus-body-text;
+}
+
+/*
+*  Ocult Elements
+* ========================================
+*/
+button.main-button {
+  background-color: $main-button;
+  color: $text-button;
+  font-family: 'ocr';
+}
+
+/*
+*  Dynamic Elements
+* ========================================
+*/
+$slot: slot- !default;
+$setdown: setdown- !default;
+$locked: locked- !default;
+
+div.set {
+  background: url(../asset/icons/icon-setcard.png) no-repeat;
+  width: 90px;
+  height: 90px;
+}
+
+//
+@for $i from 1 through 20 {
+  .#{$setdown}_#{$slot}-#{$i} {
+
+  }
+}
+
+@for $i from 1 through 20 {
+  .#{$slot}#{$i} {
+    //conteúdo a mostra(jogada)
+  }
+}
+
+@for $i from 1 through 20 {
+  .#{$locked}_#{$slot}-#{$i} {
+
+  }
+}
