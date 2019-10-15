@@ -34,6 +34,7 @@ const cards = () => {
   }
 }
 
+let sequencia	 = []
 let chances		 = []
 let permission   = true
 let bonusStack   = []
@@ -78,13 +79,18 @@ const sequencialIntNoRepeated = (range, array = []) => {
   }
   return array
 }
+const createSequence         = () => { 
+  sequence = sequencialIntNoRepeated(slotNumber())
+  return sequence
+}	
 // Bonus
 const stackBonus = (bonus) => ( bonusStack.push(bonus) )
-const drawBonus  = (bonus) => ( bonusStack..remove(bonus) )
+const drawBonus  = (bonus) => ( bonusStack.remove(bonus) )
 const checkBonus = () => {
-  for(let i; i < chance.length; i++) {
-    // checa se existem 2 elementos
-	// se sim, estaca nos bonus
+  for(let i; i < bonusList.length; i++) {
+    if(chance == bonusList[i]{card}) {
+      
+	}
   }
 }
 // Cards
@@ -155,7 +161,7 @@ const checkFlips  = () => {
  */
 function startGame() {
   newOrder = []
-  sequence = sequencialIntNoRepeated(slotNumber)
+  sequence = createSequence()
 
   for(let i = 0; i < sequence.length; i++) {
     newOrder.push(parseInt(sequence[i]))
