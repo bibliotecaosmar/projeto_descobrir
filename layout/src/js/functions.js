@@ -5,7 +5,7 @@
 const NOT		= (condition) => !condition
 const HTML 	= (value, prefix = '') => ( document.getElementById(prefix + value) )
 
-const hasInArray  = (array, value) => ( false ? (array.indexOf(value) === -1) : true )
+const hasInArray  = (array, value) => ( false ? array.indexOf(value) == -1 : true )
 const inRange    	= (array, range) => ( range >= array.length )
 
 const pushNotHaving		  = (array, value) => ( array.push(value) ? (array.indexOf(value) === -1) : array)
@@ -87,8 +87,10 @@ let bonusList     = [
  * =====================================================================
  */
 // Mathematical ~
-const randomNum = (weight = 10) => 
-  ( Math.floor( Math.random() * weight ).toString() )
+const randomNum = (weight = slotNumber) => {
+  number = Math.floor( Math.random() * weight ).toString()
+  return number ? number < slotNumber : 20
+}
 // Points
 const pointToGain   = (points) => ( points+5 )
 const pointToLose   = (points) => { 
@@ -115,23 +117,23 @@ const incrementChance	  = (icon) => ( chances.push(icon) )
  * ===================================================================== 
  */
 // Generators
-const sequencialIntNoRepeated = (range, array = []) => {
-  while(array.length < range) {
+const sequencialIntNoRepeated = () => {
+  array = []
+  while(array.length < slotNumber) {
     let x = randomNum()
-    if( NOT( hasInArray( array, x ) ) ||
-             inRange( array, range ) ) {
+    if( array.indexOf(x) == -1 ||
+        slotNumber >= array.length ) {
       array.push(x)
     }
   }
   return array
 }
 const createSequence          = () => { 
-  sequence = sequencialIntNoRepeated(slotNumber)
+  sequence = sequencialIntNoRepeated()
   return sequence
 }
 const updateSlotsContent = () => {
   content = []
-
   for(let i = 0; i < slotNumber; i++) {
     content.push(HTML(slots[i]).className)
   }
@@ -142,7 +144,7 @@ const stackBonus = (bonus) => ( bonusStack.push(bonus) )
 const drawBonus  = (bonus) => ( bonusStack.remove(bonus) )
 const checkBonus = () => {
   for(let i; i < bonusList.length; i++) {
-    if( hasInArray(chances, bonusList[i].icon) ) {
+    if( chances.indexOf(bonusList[i].icon) != -1 ) {
     
       
       
@@ -158,8 +160,8 @@ const setIcons = (order) => {
 const setIconsNotLockeds = () => {
   for(let i = 0; i < slotNumber; i++) {
     icon = HTML(slots[i]).className
-    if( NOT( hasInArray( icon, 'setdown_' ) &&
-             hasInArray( icon, 'locke_' ) ) ) {
+    if( icon.indexOf('setdown_') != -1 ||
+        icon.indexOf('locke_') != -1 ) {
       HTML([i]).className = addSetdown(icon)
     }
   }
@@ -167,8 +169,8 @@ const setIconsNotLockeds = () => {
 const lockIcons = () => {
   for(let i = 0; i < slotNumber; i++) {
     icon = HTML( slots[i] ).className
-    if( NOT( hasInArray( icon, 'setdown_' ) &&
-             hasInArray( icon, 'locke_' ) ) ) {
+    if( icon.indexOf('setdown_') ||
+        icon.indexOf('locke_') ) {
       HTML( slots[i] ).className = addLocked(icon)
     }
   }
@@ -178,8 +180,8 @@ const comparator = () => {
   let flippedIcons = []
   for(let i = 0; i < slotNumber; i++) {
     icon = HTML( slots[i] ).className
-    if( NOT( hasInArray( icon, 'setdown_' ) &&
-             hasInArray( icon, 'locke_' ) ) ) {
+    if( icon.indexOf('setdown_') == -1 ||
+        icon.indexOf('locke_') == -1 ) {
       flippedIcons.push( icon )
     }
   }
@@ -212,12 +214,12 @@ const checkFlips          = () => {
   checkEndGame()
   }
 }
-const checkEndGame        = () => {
-  if(slotsContent.every((a) => hasInArray(a, 'locke_'))) {
+const checkEndGame  = () => {
+  if(slotsContent.every((a) => a == 'locke_')) {
     resetGame()
   }
 }
-const resetGame = () => {
+const resetGame     = () => {
   permission = false
 
   for(let i = 0; i < slotNumber; i++) {
@@ -248,11 +250,11 @@ function flip(slot) {
     icon = HTML(slot, 'slot-').className
     iconsFlippeds = parseInt(HTML('FlippedIcons').innerHTML)
    
-    if( NOT( hasInArray(chances, icon) ) ) {
+    if( chances.indexOf(icon) == -1 ) {
       incrementChance(icon)
     }
     
-    if( hasInArray(icon, 'setdown_') ) {
+    if( icon.indexOf('setdown_') != -1 ) {
       HTML(slot, 'slot-').className = removeSetdown(icon)
       ++iconsFlippeds
       HTML('FlippedIcons').innerHTML = iconsFlippeds.toString()
