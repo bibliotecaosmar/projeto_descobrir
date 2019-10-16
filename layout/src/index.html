@@ -12,9 +12,10 @@
   <title>/Descobrir</title>
 </head>
 <body>
+  <!-- Cover -->
   <div class="background-image m-0 p-0"></div>
 
-  <!-- Cover -->
+  <!-- Title -->
   <div class="row">
 
     <div class="col-4"></div>
@@ -29,8 +30,8 @@
   
   </div>
   
-  <!-- Flipped cards -->
-  <div id="FlippedCards" hidden>0</div>  
+  <!-- Flipped Icons -->
+  <div id="FlippedIcons" hidden>0</div>  
   <div id="CurrentBonus" hidden></div>
   
   <!-- Hub-points -->
@@ -99,12 +100,12 @@
 
   </div>
 
-  <!-- Cards -->
+  <!-- Icons -->
   <div class="row mt-3">
 
     <div class="col-2 ml-4"></div>
 
-    <div class="col-8 fixed">
+    <div class="col-8">
 
       <div class="row">
         <div class="col pl-5 pr-5">
@@ -112,73 +113,35 @@
             <div class="col">
               <div class="row">
                 <div class="col pb-4">
-                  <div id="slot-1" class="set"  onclick="flip(1, permission)"></div>
+                  <div id="slot-1" class="set" onclick="flip(1)"></div>
                 </div>
               </div>
             </div>
             <div class="col">
               <div class="row">
                 <div class="col pb-4">
-                  <div id="slot-2" class="set"  onclick="flip(2, permission)"></div>
+                  <div id="slot-2" class="set" onclick="flip(2)"></div>
                 </div>
               </div>
             </div>
             <div class="col">
               <div class="row">
                 <div class="col pb-4">
-                  <div id="slot-3" class="set"  onclick="flip(3, permission)"></div>
+                  <div id="slot-3" class="set" onclick="flip(3)"></div>
                 </div>
               </div>
             </div>
             <div class="col">
               <div class="row">
                 <div class="col pb-4">
-                  <div id="slot-4" class="set"  onclick="flip(4, permission)"></div>
+                  <div id="slot-4" class="set" onclick="flip(4)"></div>
                 </div>
               </div>
             </div>
             <div class="col">
               <div class="row">
                 <div class="col pb-4">
-                  <div id="slot-5" class="set"  onclick="flip(5, permission)"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-    
-          <div class="row">
-            <div class="col">
-              <div class="row">
-                <div class="col pb-4">
-                  <div id="slot-6" class="set"  onclick="flip(6, permission)"></div>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="row">
-                <div class="col pb-4">
-                  <div id="slot-7" class="set"  onclick="flip(7, permission)"></div>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="row">
-                <div class="col pb-4">
-                  <div id="slot-8" class="set"  onclick="flip(8, permission)"></div>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="row">
-                <div class="col pb-4">
-                  <div id="slot-9" class="set"  onclick="flip(9, permission)"></div>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="row">
-                <div class="col pb-4">
-                  <div id="slot-10" class="set"  onclick="flip(10, permission)"></div>
+                  <div id="slot-5" class="set" onclick="flip(5)"></div>
                 </div>
               </div>
             </div>
@@ -188,35 +151,35 @@
             <div class="col">
               <div class="row">
                 <div class="col pb-4">
-                  <div id="slot-11" class="set"  onclick="flip(11, permission)"></div>
+                  <div id="slot-6" class="set" onclick="flip(6)"></div>
                 </div>
               </div>
             </div>
             <div class="col">
               <div class="row">
                 <div class="col pb-4">
-                  <div id="slot-12" class="set"  onclick="flip(12, permission)"></div>
+                  <div id="slot-7" class="set" onclick="flip(7)"></div>
                 </div>
               </div>
             </div>
             <div class="col">
               <div class="row">
                 <div class="col pb-4">
-                  <div id="slot-13" class="set"  onclick="flip(13, permission)"></div>
+                  <div id="slot-8" class="set" onclick="flip(8)"></div>
                 </div>
               </div>
             </div>
             <div class="col">
               <div class="row">
                 <div class="col pb-4">
-                  <div id="slot-14" class="set"  onclick="flip(14, permission)"></div>
+                  <div id="slot-9" class="set" onclick="flip(9)"></div>
                 </div>
               </div>
             </div>
             <div class="col">
               <div class="row">
                 <div class="col pb-4">
-                  <div id="slot-15" class="set"  onclick="flip(15, permission)"></div>
+                  <div id="slot-10" class="set" onclick="flip(10)"></div>
                 </div>
               </div>
             </div>
@@ -226,35 +189,73 @@
             <div class="col">
               <div class="row">
                 <div class="col pb-4">
-                  <div id="slot-16" class="set"  onclick="flip(16, permission)"></div>
+                  <div id="slot-11" class="set" onclick="flip(11)"></div>
                 </div>
               </div>
             </div>
             <div class="col">
               <div class="row">
                 <div class="col pb-4">
-                  <div id="slot-17" class="set"  onclick="flip(17, permission)"></div>
+                  <div id="slot-12" class="set" onclick="flip(12)"></div>
                 </div>
               </div>
             </div>
             <div class="col">
               <div class="row">
                 <div class="col pb-4">
-                  <div id="slot-18" class="set"  onclick="flip(18, permission)"></div>
+                  <div id="slot-13" class="set" onclick="flip(13)"></div>
                 </div>
               </div>
             </div>
             <div class="col">
               <div class="row">
                 <div class="col pb-4">
-                  <div id="slot-19" class="set"  onclick="flip(19, permission)"></div>
+                  <div id="slot-14" class="set" onclick="flip(14)"></div>
                 </div>
               </div>
             </div>
             <div class="col">
               <div class="row">
                 <div class="col pb-4">
-                  <div id="slot-20" class="set"  onclick="flip(20, permission)"></div>
+                  <div id="slot-15" class="set" onclick="flip(15)"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+    
+          <div class="row">
+            <div class="col">
+              <div class="row">
+                <div class="col pb-4">
+                  <div id="slot-16" class="set" onclick="flip(16)"></div>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="row">
+                <div class="col pb-4">
+                  <div id="slot-17" class="set" onclick="flip(17)"></div>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="row">
+                <div class="col pb-4">
+                  <div id="slot-18" class="set" onclick="flip(18)"></div>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="row">
+                <div class="col pb-4">
+                  <div id="slot-19" class="set" onclick="flip(19)"></div>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="row">
+                <div class="col pb-4">
+                  <div id="slot-20" class="set" onclick="flip(20)"></div>
                 </div>
               </div>
             </div>

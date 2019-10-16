@@ -2,44 +2,84 @@
  *  System Functions
  * =====================================================================
  */
-const NOT				= (condition) => !condition
-const HTML  			= (value, prefix = '') => ( document.getElementById(prefix + value) )
+const NOT		= (condition) => !condition
+const HTML 	= (value, prefix = '') => ( document.getElementById(prefix + value) )
 
-const hasInArray 		= (array, value) => ( true ? (array.indexOf(value) === -1) : false )
-const inRange    		= (array, range) => ( range >= array.length )
+const hasInArray  = (array, value) => ( false ? (array.indexOf(value) === -1) : true )
+const inRange    	= (array, range) => ( range >= array.length )
 
-const pushNotHaving		= (array, value) => ( array.push(value) ? (array.indexOf(value) === -1) : array
-const stringPlusNumber 	= (string, number) => ( [string, number.toString()].join() )
+const pushNotHaving		  = (array, value) => ( array.push(value) ? (array.indexOf(value) === -1) : array)
+const stringPlusNumber 	= (string, number) => ( [string, number.toString()].join('') )
 
 /**
  *  System Variables
  * =====================================================================
  */
-const slots = () => {
-  let slots = []
-  for(let i = 0; i < 20; i++) {
-    slots.push( stringPlusNumber('slot-', i) )
-  }
-}
-const slotNumber = () => ( slot().length )
+const icons  = [
+  'config-icon',
+  'cpu-icon', 
+  'google-icon',
+  'gps-icon', 
+  'hd-icon', 
+  'home-icon', 
+  'linux-icon', 
+  'menu-icon', 
+  'share-icon', 
+  'windows-icon',
+  ]
+const slots = [
+  'slot-1',
+  'slot-2',
+  'slot-3',
+  'slot-4',
+  'slot-5',
+  'slot-6',
+  'slot-7',
+  'slot-8',
+  'slot-9',
+  'slot-10',
+  'slot-11',
+  'slot-12',
+  'slot-13',
+  'slot-14',
+  'slot-15',
+  'slot-16',
+  'slot-17',
+  'slot-18',
+  'slot-19',
+  'slot-20',
+]
+const slotNumber = slots.length
 
-const cards = () => {
-  let card     = ['card1', 'card2', 'card3', 'card4', 'card5', 'card6', 'card7', 'card8', 'card9', 'card10']
-  let exemplar = []
-  for(let i = 0; i < slotNumber/2; i++) {
-	let y = (i*2)
-	let x = (i*2)+1
-    exemplar.push(card[y])
-	exemplar.push(card[x])
-  }
-}
-
-let sequencia	 = []
-let chances		 = []
-let permission   = true
-let bonusStack   = []
-let bonusList    = [
-  {card: 'closeButton', bonus: 'Botão de Fechar Windows', status: 'inative', where: []},
+let slotsContent  = [
+  'set',
+  'set',
+  'set',
+  'set',
+  'set',
+  'set',
+  'set',
+  'set',
+  'set',
+  'set',
+  'set',
+  'set',
+  'set',
+  'set',
+  'set',
+  'set',
+  'set',
+  'set',
+  'set',
+  'set',
+]
+let sequencia	    = []
+let chances		    = []
+let permission    = false
+let bonusStack    = []
+let bonusList     = [
+  {'icon': 'linux-icon', 'bonus': 'É um OS OpenSorce', 'where': []},
+  {'icon': 'google-icon', 'bonus': 'Google', 'where': []},
 ]
 
 /**
@@ -49,20 +89,26 @@ let bonusList    = [
 // Mathematical ~
 const randomNum = (weight = 10) => 
   ( Math.floor( Math.random() * weight ).toString() )
-
+// Points
+const pointToGain   = (points) => ( points+5 )
+const pointToLose   = (points) => { 
+  if(points >= 2){
+    return --points
+  }
+  return 0 
+}
+const currentPoints = () => ( parseInt( HTML('points').innerHTML ) )
+const addPoints     = () => ( HTML('points').innerHTML = pointToGain(parseInt(HTML('points').innerHTML)) )
+const deductPoints  = () => ( HTML('points').innerHTML = pointToLose(parseInt(HTML('points').innerHTML)) )
 // DOM elements ~
-const lockAll             = () => ( permission = false )
-const unlockAll           = () => ( permission = true )
-const addLocked           = (card) => ( ['locked_', card].join('') )
+const lockAll       = () => { permission = false }
+const unlockAll     = () => { permission = true }
+const addLocked     = (icon) => ( ['locke_', icon].join('') )
 
-const addSetdown          = (card) => ( ['setdown_', card].join('') )
-const removeSetdown       = (card) => ( card.split('_')[1] )
+const addSetdown    = (icon) => ( ['setdown_', icon].join('') )
+const removeSetdown = (icon) => ( icon.split('_')[1] )
 
-const currentPoints       = () => ( parseInt( HTML('Points').innerHTML ) )
-const addPoints           = ( points, pointToGain) => ( HTML('Points').innerHTML = pointToGain(points) )
-const deductPoints        = ( points, pointToLose) => ( HTML('Points').innerHTML = pointToLose(points) )
-
-const incrementChance	  = (card) => ( chances.push(card) )
+const incrementChance	  = (icon) => ( chances.push(icon) )
 
 /**
  *  Services(Business Rules)
@@ -79,114 +125,139 @@ const sequencialIntNoRepeated = (range, array = []) => {
   }
   return array
 }
-const createSequence         = () => { 
-  sequence = sequencialIntNoRepeated(slotNumber())
+const createSequence          = () => { 
+  sequence = sequencialIntNoRepeated(slotNumber)
   return sequence
-}	
+}
+const updateSlotsContent = () => {
+  content = []
+
+  for(let i = 0; i < slotNumber; i++) {
+    content.push(HTML(slots[i]).className)
+  }
+  slotsContent = content
+}
 // Bonus
 const stackBonus = (bonus) => ( bonusStack.push(bonus) )
 const drawBonus  = (bonus) => ( bonusStack.remove(bonus) )
 const checkBonus = () => {
   for(let i; i < bonusList.length; i++) {
-    if(chance == bonusList[i]{card}) {
+    if( hasInArray(chances, bonusList[i].icon) ) {
+    
       
-	}
+      
+  	}
   }
 }
-// Cards
-const setCards = (order) => {
+// Icons
+const setIcons = (order) => {
   for(let i = 0; i < slotNumber; i++) {
-    HTML((i+1), 'slot-').className = 'setdown_'+( cards()[order[i]] )
+    HTML((i+1), 'slot-').className = 'setdown_'+( icons[order[i]] )
   }
 }
-const setCardsNotLockeds = () => {
+const setIconsNotLockeds = () => {
   for(let i = 0; i < slotNumber; i++) {
-    card = HTML([i]).className
-    if( NOT( hasInArray( card, 'setdown_' ) &&
-             hasInArray( card, 'locked_' ) ) ) {
-      HTML([i]).className = addSetdown(card)
+    icon = HTML(slots[i]).className
+    if( NOT( hasInArray( icon, 'setdown_' ) &&
+             hasInArray( icon, 'locke_' ) ) ) {
+      HTML([i]).className = addSetdown(icon)
     }
   }
 }
-const lockCards = (slots) => {
-  for(let i = 0; i < slots.length; i++) {
-    card = HTML( slots[i] ).className
-    if( NOT( hasInArray( card, 'setdown_' ) &&
-             hasInArray( card, 'locked_' ) ) ) {
-      HTML( slots[i] ).className = addLocked(card)
+const lockIcons = () => {
+  for(let i = 0; i < slotNumber; i++) {
+    icon = HTML( slots[i] ).className
+    if( NOT( hasInArray( icon, 'setdown_' ) &&
+             hasInArray( icon, 'locke_' ) ) ) {
+      HTML( slots[i] ).className = addLocked(icon)
     }
   }
-  HTML('FlippedCards').innerHTML = "0"
+  HTML('FlippedIcons').innerHTML = "0"
 }
-const comparator = (slots) => {
-  let flippedCards = []
-  for(let i = 0; i < slots.length; i++) {
-    card = HTML( slots[i] ).className
-    if( NOT( hasInArray( card, 'setdown_' ) &&
-             hasInArray( card, 'locked_' ) ) ) {
-      flippedCards.push( card )
+const comparator = () => {
+  let flippedIcons = []
+  for(let i = 0; i < slotNumber; i++) {
+    icon = HTML( slots[i] ).className
+    if( NOT( hasInArray( icon, 'setdown_' ) &&
+             hasInArray( icon, 'locke_' ) ) ) {
+      flippedIcons.push( icon )
     }
   }
-  return true ? (cards[0] == cards[1]) : false
+  return true ? (icons[0] == icons[1]) : false
 }
 // Chances
-const attempt	  = () => ( HTML('attempt').innerHTML = parseInt(HTML('attempt').innerHTML)++ )
-const resetChance = () => {
-  setCardsNotLockeds()
-  HTML('FlippedCards').innerHTML = "0"
-}
-const success 	  = () => {
+const incrementAttempt    = () => ( HTML('attempt').innerHTML = parseInt(HTML('attempt').innerHTML)+1 )
+const success 	          = () => {
   addPoints()
-  lockCards()
+  lockIcons()
 }
-const fail 		  = () => {
+const fail 		            = () => {
   deductPoints()
   resetChance()
 }
-const checkFlips  = () => {
-  if( HTML('FlippedCards').innerHTML == 2 ) {
+const resetChance         = () => {
+  setIconsNotLockeds()
+  HTML('FlippedIcons').innerHTML = "0"
+}
+const checkFlips          = () => {
+  if( HTML('FlippedIcons').innerHTML == 2 ) {
     if( comparator() ) {
       success()
     }else {
       lockAll()
-      time = setTimeout( ()=>{fail(); unlockAll(); clearTimeout(time)}, 2000 )
+      time = setTimeout( ()=>{fail(); unlockAll(); clearTimeout(time)}, 1500 )
     }
-	attempt()
+  incrementAttempt()
+  updateSlotsContent()
+  checkEndGame()
   }
 }
+const checkEndGame        = () => {
+  if(slotsContent.every((a) => hasInArray(a, 'locke_'))) {
+    resetGame()
+  }
+}
+const resetGame = () => {
+  permission = false
 
+  for(let i = 0; i < slotNumber; i++) {
+    HTML((i+1), 'slot-').className = 'set'
+  }
+  HTML('main-button').style.display = 'block'
+}
 /**
  *  Features
  * ===================================================================== 
  */
 function startGame() {
+  permission = true
+
   newOrder = []
   sequence = createSequence()
 
   for(let i = 0; i < sequence.length; i++) {
     newOrder.push(parseInt(sequence[i]))
   }
-  
-  setCards(newOrder)
-  
+
+  setIcons(newOrder)
   HTML('main-button').style.display = "none"
 }
 
 function flip(slot) {
   if(permission) {
-    card = HTML(slot, 'slot-').className
-    cardsFlippeds = parseInt(HTML('FlippedCards').innerHTML)
-	
-	if( NOT( hasInArray(chances, card) ) ) {
-	  incrementChance(card)
-	}
-  
-    if( hasInArray(card, 'setdown_') ) {
-      HTML(slot, 'slot-').className = removeSetdown(card)
-      ++cardsFlippeds
-      HTML('FlippedCards').innerHTML = cardsFlippeds.toString()
+    icon = HTML(slot, 'slot-').className
+    iconsFlippeds = parseInt(HTML('FlippedIcons').innerHTML)
+   
+    if( NOT( hasInArray(chances, icon) ) ) {
+      incrementChance(icon)
+    }
+    
+    if( hasInArray(icon, 'setdown_') ) {
+      HTML(slot, 'slot-').className = removeSetdown(icon)
+      ++iconsFlippeds
+      HTML('FlippedIcons').innerHTML = iconsFlippeds.toString()
     }
     checkFlips()
-	checkBonus()
+    checkBonus()
   }
 }
