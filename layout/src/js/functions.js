@@ -16,16 +16,26 @@ const stringPlusNumber 	= (string, number) => ( [string, number.toString()].join
  */
 const icons  = [
   'config-icon',
-  'cpu-icon', 
+  'config-icon',
+  'cpu-icon',
+  'cpu-icon',
   'google-icon',
-  'gps-icon', 
-  'hd-icon', 
-  'home-icon', 
-  'linux-icon', 
-  'menu-icon', 
-  'share-icon', 
+  'google-icon',
+  'gps-icon',
+  'gps-icon',
+  'hd-icon',
+  'hd-icon',
+  'home-icon',
+  'home-icon',
+  'linux-icon',
+  'linux-icon',
+  'menu-icon',
+  'menu-icon',
+  'share-icon',
+  'share-icon',
   'windows-icon',
-  ]
+  'windows-icon',
+]
 const slots = [
   'slot-1',
   'slot-2',
@@ -87,12 +97,7 @@ let bonusList     = [
  * =====================================================================
  */
 // Mathematical ~
-const randomNum = (size) => {
-  number = Math.floor( Math.random() * size )
-  if(number < slotNumber) {
-    return number //retorna undefined
-  }
-}
+const randomNum = (size) => ( Math.floor( Math.random() * size ) )
 // Points
 const pointToGain   = (points) => ( points+5 )
 const pointToLose   = (points) => { 
@@ -122,8 +127,8 @@ const incrementChance	  = (icon) => ( chances.push(icon) )
 const sequencialIntNoRepeated = () => {
   array = []
   cicles = 0
-  while( NOT( array.length < 20 || cicles < 100) ) {
-    let x = randomNum(10)
+  while( NOT( array.length < 20 || cicles < 3000) ) {
+    let x = randomNum(slotNumber)
     if( NOT( array.includes(x) ||
              array.length < slotNumber) ){
       array.push(x)
@@ -146,15 +151,9 @@ const updateSlotsContent = () => {
 // Bonus
 const stackBonus = (bonus) => ( bonusStack.push(bonus) )
 const drawBonus  = (bonus) => ( bonusStack.remove(bonus) )
-const checkBonus = () => {
-  for(let i; i < bonusList.length; i++) {
-    if( chances.includes(bonusList[i].icon) ) {
-    
-      
-      
-  	}
-  }
-}
+// const checkBonus = () => {
+//   reduce((b) => {b.where.includes(chance)}, bonusList)
+// }
 // Icons
 const setIcons = (order) => {
   for(let i = 0; i < slotNumber; i++) {

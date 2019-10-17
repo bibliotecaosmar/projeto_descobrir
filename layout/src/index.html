@@ -12,271 +12,277 @@
   <title>/Descobrir</title>
 </head>
 <body>
-  <!-- Cover -->
-  <div class="background-image m-0 p-0"></div>
-
-  <!-- Title -->
-  <div class="row">
-
-    <div class="col-4"></div>
-    
-    <div class="col-4">
-    
-      <div class="title">/DESCOBRIR</div>
-    
-    </div>
-    
-    <div class="col-4"></div>
+  <div class="container-fluid p-0 m-0">
+    <!-- Cover -->
+    <div class="background-image m-0 p-0"></div>
   
-  </div>
+    <!-- Title -->
+    <div class="row">
   
-  <!-- Flipped Icons -->
-  <div id="FlippedIcons" hidden>0</div>  
-  <div id="CurrentBonus" hidden></div>
-  
-  <!-- Hub-points -->
-  <div class="row ml-2">
-    
-    <div class="col">
-
-      <div class="hub">
-        <div class="points">
-          <span>Pontos: </span>
-          <span id="points">0</span>
-        </div>
+      <div class="col-4"></div>
+      
+      <div class="col-4">
+      
+        <div class="title">/DESCOBRIR</div>
+      
       </div>
-
+      
+      <div class="col-4"></div>
+    
     </div>
+    
+    <!-- Flipped Icons -->
+    <div id="FlippedIcons" hidden>0</div>  
+    <div id="CurrentBonus" hidden></div>
+    
+    <!-- Hub-points -->
+    <div class="row ml-2">
+      
+      <div class="col">
   
-  </div>
-  
-  <!-- Hub-chances -->
-  <div class="row ml-2">
-  
-    <div class="col">
-
-      <div class="hub">
-        <div class="chances">
-          <span>Tentativas: </span>
-          <span id="attempt">0</span>
-        </div>
-      </div>
-
-    </div>
-  
-  </div>
-  
-  <!-- Hub-level -->
-  <div class="row ml-2">
-  
-    <div class="col">
-
-      <div class="hub">
-        <div class="level">
-          <span>Nível: </span>
-          <span id="level">Caçador de Botão de Fechar</span>
-        </div>
-      </div>
-
-    </div>
-  
-  </div>
-  
-  <!-- Bônus -->
-  <div class="row mt-3">
-
-    <div class="col-2 mr-5"></div>
-
-    <div class="col-8 pl-4 pr-5">
-
-      <div class="row bonus-hub shadow">
-        <div class="col-3 bonus-header text-center pt-1">bônus</div>
-        <div id="bonus-request" class="col-9 bonus-body pt-1"></div>
-      </div>
-
-    </div>
-
-    <div class="col-2 ml-5"></div>
-
-  </div>
-
-  <!-- Icons -->
-  <div class="row mt-3">
-
-    <div class="col-2 ml-4"></div>
-
-    <div class="col-8">
-
-      <div class="row">
-        <div class="col pl-5 pr-5">
-          <div class="row">
-            <div class="col">
-              <div class="row">
-                <div class="col pb-4">
-                  <div id="slot-1" class="set" onclick="flip(1)"></div>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="row">
-                <div class="col pb-4">
-                  <div id="slot-2" class="set" onclick="flip(2)"></div>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="row">
-                <div class="col pb-4">
-                  <div id="slot-3" class="set" onclick="flip(3)"></div>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="row">
-                <div class="col pb-4">
-                  <div id="slot-4" class="set" onclick="flip(4)"></div>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="row">
-                <div class="col pb-4">
-                  <div id="slot-5" class="set" onclick="flip(5)"></div>
-                </div>
-              </div>
-            </div>
+        <div class="hub">
+          <div class="points">
+            <span>Pontos: </span>
+            <span id="points">0</span>
           </div>
-    
-          <div class="row">
-            <div class="col">
-              <div class="row">
-                <div class="col pb-4">
-                  <div id="slot-6" class="set" onclick="flip(6)"></div>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="row">
-                <div class="col pb-4">
-                  <div id="slot-7" class="set" onclick="flip(7)"></div>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="row">
-                <div class="col pb-4">
-                  <div id="slot-8" class="set" onclick="flip(8)"></div>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="row">
-                <div class="col pb-4">
-                  <div id="slot-9" class="set" onclick="flip(9)"></div>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="row">
-                <div class="col pb-4">
-                  <div id="slot-10" class="set" onclick="flip(10)"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-    
-          <div class="row">
-            <div class="col">
-              <div class="row">
-                <div class="col pb-4">
-                  <div id="slot-11" class="set" onclick="flip(11)"></div>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="row">
-                <div class="col pb-4">
-                  <div id="slot-12" class="set" onclick="flip(12)"></div>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="row">
-                <div class="col pb-4">
-                  <div id="slot-13" class="set" onclick="flip(13)"></div>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="row">
-                <div class="col pb-4">
-                  <div id="slot-14" class="set" onclick="flip(14)"></div>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="row">
-                <div class="col pb-4">
-                  <div id="slot-15" class="set" onclick="flip(15)"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-    
-          <div class="row">
-            <div class="col">
-              <div class="row">
-                <div class="col pb-4">
-                  <div id="slot-16" class="set" onclick="flip(16)"></div>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="row">
-                <div class="col pb-4">
-                  <div id="slot-17" class="set" onclick="flip(17)"></div>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="row">
-                <div class="col pb-4">
-                  <div id="slot-18" class="set" onclick="flip(18)"></div>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="row">
-                <div class="col pb-4">
-                  <div id="slot-19" class="set" onclick="flip(19)"></div>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="row">
-                <div class="col pb-4">
-                  <div id="slot-20" class="set" onclick="flip(20)"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-    
         </div>
+  
       </div>
-
+    
+    </div>
+    
+    <!-- Hub-chances -->
+    <div class="row ml-2">
+    
+      <div class="col">
+  
+        <div class="hub">
+          <div class="chances">
+            <span>Tentativas: </span>
+            <span id="attempt">0</span>
+          </div>
+        </div>
+  
+      </div>
+    
+    </div>
+    
+    <!-- Hub-level -->
+    <div class="row ml-2">
+    
+      <div class="col">
+  
+        <div class="hub">
+          <div class="level">
+            <span>Nível: </span>
+            <span id="level">Caçador de Botão de Fechar</span>
+          </div>
+        </div>
+  
+      </div>
+    
+    </div>
+    
+    <!-- Bônus -->
+    <div class="row mt-3">
+  
+      <div class="col-md-2 mr-4"></div>
+  
+      <div class="col-md-8 ml-1 pl-4 pr-5">
+  
+        <div class="row bonus-hub shadow">
+          <div class="col-3 bonus-header text-center pt-1">bônus</div>
+          <div id="bonus-request" class="col-9 bonus-body pt-1"></div>
+        </div>
+  
+      </div>
+  
+      <div class="col-md-2 ml-5"></div>
+  
+    </div>
+  
+    <!-- Icons -->
+    <div class="row mt-3">
+  
+      <div class="col-md-2 ml-4"></div>
+  
+      <div class="col-md-8">
+  
+        <div class="row">
+          <div class="col pl-5 pr-5">
+            <div class="row">
+              <div class="col">
+                <div class="row">
+                  <div class="col pb-4">
+                    <div id="slot-1" class="set" onclick="flip(1)"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="row">
+                  <div class="col pb-4">
+                    <div id="slot-2" class="set" onclick="flip(2)"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="row">
+                  <div class="col pb-4">
+                    <div id="slot-3" class="set" onclick="flip(3)"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="row">
+                  <div class="col pb-4">
+                    <div id="slot-4" class="set" onclick="flip(4)"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="row">
+                  <div class="col pb-4">
+                    <div id="slot-5" class="set" onclick="flip(5)"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+      
+            <div class="row">
+              <div class="col">
+                <div class="row">
+                  <div class="col pb-4">
+                    <div id="slot-6" class="set" onclick="flip(6)"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="row">
+                  <div class="col pb-4">
+                    <div id="slot-7" class="set" onclick="flip(7)"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="row">
+                  <div class="col pb-4">
+                    <div id="slot-8" class="set" onclick="flip(8)"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="row">
+                  <div class="col pb-4">
+                    <div id="slot-9" class="set" onclick="flip(9)"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="row">
+                  <div class="col pb-4">
+                    <div id="slot-10" class="set" onclick="flip(10)"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+      
+            <div class="row">
+              <div class="col">
+                <div class="row">
+                  <div class="col pb-4">
+                    <div id="slot-11" class="set" onclick="flip(11)"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="row">
+                  <div class="col pb-4">
+                    <div id="slot-12" class="set" onclick="flip(12)"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="row">
+                  <div class="col pb-4">
+                    <div id="slot-13" class="set" onclick="flip(13)"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="row">
+                  <div class="col pb-4">
+                    <div id="slot-14" class="set" onclick="flip(14)"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="row">
+                  <div class="col pb-4">
+                    <div id="slot-15" class="set" onclick="flip(15)"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+      
+            <div class="row">
+              <div class="col">
+                <div class="row">
+                  <div class="col pb-4">
+                    <div id="slot-16" class="set" onclick="flip(16)"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="row">
+                  <div class="col pb-4">
+                    <div id="slot-17" class="set" onclick="flip(17)"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="row">
+                  <div class="col pb-4">
+                    <div id="slot-18" class="set" onclick="flip(18)"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="row">
+                  <div class="col pb-4">
+                    <div id="slot-19" class="set" onclick="flip(19)"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="row">
+                  <div class="col pb-4">
+                    <div id="slot-20" class="set" onclick="flip(20)"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+      
+          </div>
+        </div>
+  
+      </div>
+  
+      <div class="col-md-2"></div>
+  
+    </div>
+  
+    <!-- Main Button -->
+    <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-md-8 pl-5">
+        <button id="main-button" type="button" class="main-button btn btn-dark btn-lg btn-block" onclick="startGame()">Start</button>
+      </div>
+      <div class="col-md-2"></div>
     </div>
 
-    <div class="col-2"></div>
-
-  </div>
-
-  <!-- Main Button -->
-  <div class="row">
-    <div class="col-2"></div>
-    <div class="col-8 pl-5">
-      <button id="main-button" type="button" class="main-button btn btn-dark btn-lg btn-block" onclick="startGame()">Start</button>
+    <div class="row">
+      <div class="col pedestal">i</div>
     </div>
-    <div class="col-2"></div>
   </div>
 
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

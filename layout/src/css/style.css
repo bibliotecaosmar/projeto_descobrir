@@ -53,6 +53,9 @@ div.bonus-header {
 div.bonus-body {
   color: black; }
 
+div.pedestal {
+  height: 40vh; }
+
 /*
 *  Ocult Elements
 * ========================================
@@ -73,150 +76,120 @@ div.set {
 
 .setdown_config-icon {
   background: url(../asset/icons/setcard.png) no-repeat;
-  width: 90px;
-  height: 90px; }
+  width: 10%; }
 
 .setdown_cpu-icon {
   background: url(../asset/icons/setcard.png) no-repeat;
-  width: 90px;
-  height: 90px; }
+  width: 10%; }
 
 .setdown_google-icon {
   background: url(../asset/icons/setcard.png) no-repeat;
-  width: 90px;
-  height: 90px; }
+  width: 10%; }
 
 .setdown_gps-icon {
   background: url(../asset/icons/setcard.png) no-repeat;
-  width: 90px;
-  height: 90px; }
+  width: 10%; }
 
 .setdown_hd-icon {
   background: url(../asset/icons/setcard.png) no-repeat;
-  width: 90px;
-  height: 90px; }
+  width: 10%; }
 
 .setdown_home-icon {
   background: url(../asset/icons/setcard.png) no-repeat;
-  width: 90px;
-  height: 90px; }
+  width: 10%; }
 
 .setdown_linux-icon {
   background: url(../asset/icons/setcard.png) no-repeat;
-  width: 90px;
-  height: 90px; }
+  width: 10%; }
 
 .setdown_menu-icon {
   background: url(../asset/icons/setcard.png) no-repeat;
-  width: 90px;
-  height: 90px; }
+  width: 10%; }
 
 .setdown_share-icon {
   background: url(../asset/icons/setcard.png) no-repeat;
-  width: 90px;
-  height: 90px; }
+  width: 10%; }
 
 .setdown_windows-icon {
   background: url(../asset/icons/setcard.png) no-repeat;
-  width: 90px;
-  height: 90px; }
+  width: 10%; }
 
 .config-icon {
   background: url("../asset/icons/config-icon.png") no-repeat;
-  width: 90px;
-  height: 90px; }
+  width: 10%; }
 
 .cpu-icon {
   background: url("../asset/icons/cpu-icon.png") no-repeat;
-  width: 90px;
-  height: 90px; }
+  width: 10%; }
 
 .google-icon {
   background: url("../asset/icons/google-icon.png") no-repeat;
-  width: 90px;
-  height: 90px; }
+  width: 10%; }
 
 .gps-icon {
   background: url("../asset/icons/gps-icon.png") no-repeat;
-  width: 90px;
-  height: 90px; }
+  width: 10%; }
 
 .hd-icon {
   background: url("../asset/icons/hd-icon.png") no-repeat;
-  width: 90px;
-  height: 90px; }
+  width: 10%; }
 
 .home-icon {
   background: url("../asset/icons/home-icon.png") no-repeat;
-  width: 90px;
-  height: 90px; }
+  width: 10%; }
 
 .linux-icon {
   background: url("../asset/icons/linux-icon.png") no-repeat;
-  width: 90px;
-  height: 90px; }
+  width: 10%; }
 
 .menu-icon {
   background: url("../asset/icons/menu-icon.png") no-repeat;
-  width: 90px;
-  height: 90px; }
+  width: 10%; }
 
 .share-icon {
   background: url("../asset/icons/share-icon.png") no-repeat;
-  width: 90px;
-  height: 90px; }
+  width: 10%; }
 
 .windows-icon {
   background: url("../asset/icons/windows-icon.png") no-repeat;
-  width: 90px;
-  height: 90px; }
+  width: 10%; }
 
 .locked_config-icon {
   background: url("../asset/icons/config-icon.png") no-repeat;
-  width: 90px;
-  height: 90px; }
+  width: 10%; }
 
 .locked_cpu-icon {
   background: url("../asset/icons/cpu-icon.png") no-repeat;
-  width: 90px;
-  height: 90px; }
+  width: 10%; }
 
 .locked_google-icon {
   background: url("../asset/icons/google-icon.png") no-repeat;
-  width: 90px;
-  height: 90px; }
+  width: 10%; }
 
 .locked_gps-icon {
   background: url("../asset/icons/gps-icon.png") no-repeat;
-  width: 90px;
-  height: 90px; }
+  width: 10%; }
 
 .locked_hd-icon {
   background: url("../asset/icons/hd-icon.png") no-repeat;
-  width: 90px;
-  height: 90px; }
+  width: 10%; }
 
 .locked_home-icon {
   background: url("../asset/icons/home-icon.png") no-repeat;
-  width: 90px;
-  height: 90px; }
+  width: 10%; }
 
 .locked_linux-icon {
   background: url("../asset/icons/linux-icon.png") no-repeat;
-  width: 90px;
-  height: 90px; }
+  width: 10%; }
 
 .locked_menu-icon {
   background: url("../asset/icons/menu-icon.png") no-repeat;
-  width: 90px;
-  height: 90px; }
+  width: 10%; }
 
 .locked_share-icon {
   background: url("../asset/icons/share-icon.png") no-repeat;
-  width: 90px;
-  height: 90px; }
+  width: 10%; }
 
 .locked_windows-icon {
   background: url("../asset/icons/windows-icon.png") no-repeat;
-  width: 90px;
-  height: 90px; }
+  width: 10%; }

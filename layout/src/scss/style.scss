@@ -82,6 +82,9 @@ div.bonus-body {
   color: $bonus-body-text;
 }
 
+div.pedestal {
+  height: 40vh;
+}
 /*
 *  Ocult Elements
 * ========================================
@@ -106,12 +109,7 @@ div.set {
   height: 90px;
 }
 
-//
-$keys: (
-
-);
-
-
+//icons
 $icons: (
   'icon-1': (
     'name': 'config-icon',
@@ -158,23 +156,20 @@ $icons: (
 @each $icon, $key in $icons {
   .#{$setdown}#{map-get($key, 'name')} {
     background: url(../asset/icons/setcard.png) no-repeat;
-    width: 90px;
-    height: 90px;
+    width: 10%;
   }
 }
 
 @each $icon, $key in $icons {
   .#{map-get($key, 'name')} {
     background: url(map-get($key, 'link')) no-repeat;
-    width: 90px;
-    height: 90px;
+    width: 10%;
   }
 }
 
 @each $icon, $key in $icons {
   .#{$locked}#{map-get($key, 'name')} {
 	background: url(map-get($key, 'link')) no-repeat;
-    width: 90px;
-    height: 90px;
+    width: 10%;
   }
 }
