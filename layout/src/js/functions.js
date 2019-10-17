@@ -83,7 +83,7 @@ let slotsContent  = [
   'set',
   'set',
 ]
-let sequencia	    = []
+let sequence	    = []
 let chances		    = []
 let permission    = false
 let bonusStack    = []
@@ -124,23 +124,17 @@ const incrementChance	  = (icon) => ( chances.push(icon) )
  * ===================================================================== 
  */
 // Generators
-const sequencialIntNoRepeated = () => {
+const createSequence = () => {
   array = []
-  cicles = 0
-  while( NOT( array.length < 20 || cicles < 3000) ) {
+  while( array.length < slotNumber) {
     let x = randomNum(slotNumber)
-    if( NOT( array.includes(x) ||
-             array.length < slotNumber) ){
+    if( NOT( array.includes(x) ) ) {
       array.push(x)
-      cicles++
     }
   }
   return array
 }
-const createSequence          = () => { 
-  sequence = [0 ,2 ,3 ,4 ,5 ,6 ,7 ,8 ,9 ,1 ,0 ,2 ,3 ,4 ,5 ,6 ,7 ,8 ,9 ,1]/*sequencialIntNoRepeated(iconNumber)*/
-  return sequence
-}
+
 const updateSlotsContent = () => {
   content = []
   for(let i = 0; i < slotNumber; i++) {
