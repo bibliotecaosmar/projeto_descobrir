@@ -124,7 +124,6 @@ const sequencialIntNoRepeated = () => {
   cicles = 0
   while( NOT( array.length < 20 || cicles < 100) ) {
     let x = randomNum(10)
-    console.log(x)
     if( NOT( array.includes(x) ||
              array.length < slotNumber) ){
       array.push(x)
@@ -190,7 +189,6 @@ const comparator = () => {
       flippedIcons.push( icon )
     }
   }
-  console.log(flippedIcons)
   return true ? (flippedIcons[0] == flippedIcons[1]) : false
 }
 // Chances
