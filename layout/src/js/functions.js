@@ -2,10 +2,19 @@
  *  System Functions
  * =====================================================================
  */
-const NOT		= (condition) => !condition
-const HTML 	= (value, prefix = '') => ( document.getElementById(prefix + value) )
+const NOT		            = (condition) => !condition
+const HTML            	= (value, prefix = '') => ( document.getElementById(prefix + value) )
 
-const inRange    	= (array, range) => ( range >= array.length )
+const inRange    	      = (array, range) => ( range >= array.length )
+const hasTwoInArray     = (array, value) => {
+  let count = 0
+  for(let i = 0; i < array.length; i++) {
+    if(array[i] === value){
+      count++
+    }
+  }
+  return (count >= 2) ? true : false
+}
 
 const pushNotHaving		  = (array, value) => ( array.push(value) ? ( array.includes(value) ) : array)
 const stringPlusNumber 	= (string, number) => ( [string, number.toString()].join('') )
@@ -86,6 +95,7 @@ let slotsContent  = [
 let sequence	    = []
 let chances		    = []
 let permission    = false
+let bonus         = {'has': false}
 let bonusStack    = []
 let bonusList     = [
   {'icon': 'linux-icon', 'bonus': 'É um OS OpenSorce', 'where': []},
@@ -99,7 +109,7 @@ let bonusList     = [
 // Mathematical ~
 const randomNum = (size) => ( Math.floor( Math.random() * size ) )
 // Points
-const pointToGain   = (points) => ( points+5 )
+const pointToGain   = (points, bonus = false) => ( bonus ? points+10 : points+5 )
 const pointToLose   = (points) => { 
   if(points >= 2){
     return --points
@@ -109,6 +119,7 @@ const pointToLose   = (points) => {
 const currentPoints = () => ( parseInt( HTML('points').innerHTML ) )
 const addPoints     = () => ( HTML('points').innerHTML = pointToGain(parseInt(HTML('points').innerHTML)) )
 const deductPoints  = () => ( HTML('points').innerHTML = pointToLose(parseInt(HTML('points').innerHTML)) )
+const incrementBonusPoint = () => ( HTML('points').innerHTML = pointToGain(parseInt(HTML('points').innerHTML), true) )
 // DOM elements ~
 const lockAll       = () => { permission = false }
 const unlockAll     = () => { permission = true }
@@ -117,7 +128,8 @@ const addLocked     = (icon) => ( ['locked_', icon].join('') )
 const addSetdown    = (icon) => ( ['setdown_', icon].join('') )
 const removeSetdown = (icon) => ( icon.split('_')[1] )
 
-const incrementChance	  = (icon) => ( chances.push(icon) )
+const incrementChances	  = (icon) => { if(chances.includes(icon)){chances.push(icon)} }
+const resetChances        = () => ( chances = [] )
 
 /**
  *  Services(Business Rules)
@@ -143,11 +155,25 @@ const updateSlotsContent = () => {
   slotsContent = content
 }
 // Bonus
+const newBonus   = (newBonus) => ( bonus = newBonus )
+const emptyBonus = () => ( bonus = {'has': false} )
 const stackBonus = (bonus) => ( bonusStack.push(bonus) )
 const drawBonus  = (bonus) => ( bonusStack.remove(bonus) )
-// const checkBonus = () => {
-//   reduce((b) => {b.where.includes(chance)}, bonusList)
-// }
+const checkBonus = (icon1, icon2) => {
+  if(bonus.icon = value) {
+    incrementBonusPoint()
+    newBonus = bonusStack.pop()
+    newBonus.has ? newBonus() : emptyBonus()
+  }
+}
+const upBonus    = () => {
+  for(let i = 0; i < bonusList.length; i++) {
+    if(hasTwoInArray(chances, bonusList[i].icon)) {
+      stackBonus(bonusList[i])
+    }
+  }
+}
+const applyBonus = () => ( HTML('bonus-request').innerHTML = bonus.has ? bonus.bonus : '')
 // Icons
 const setIcons = (order) => {
   for(let i = 0; i < slotNumber; i++) {
@@ -181,6 +207,9 @@ const comparator = () => {
              icon.includes('locked_') ) ) {
       flippedIcons.push( icon )
     }
+  }
+  if(flippedIcons[0] == flippedIcons[1]) {
+    checkBonus(flippedIcons[0])
   }
   return true ? (flippedIcons[0] == flippedIcons[1]) : false
 }
@@ -219,6 +248,8 @@ const checkEndGame  = () => {
 const resetGame     = () => {
   permission = false
 
+  resetChances()
+
   for(let i = 0; i < slotNumber; i++) {
     HTML((i+1), 'slot-').className = 'set'
   }
@@ -247,9 +278,7 @@ function flip(slot) {
     icon = HTML(slot, 'slot-').className
     iconsFlippeds = parseInt(HTML('FlippedIcons').innerHTML)
    
-    if( chances.includes(icon) ) {
-      incrementChance(icon)
-    }
+    incrementChances(icon)
     
     if( icon.includes('setdown_') ) {
       HTML(slot, 'slot-').className = removeSetdown(icon)
@@ -257,6 +286,7 @@ function flip(slot) {
       HTML('FlippedIcons').innerHTML = iconsFlippeds.toString()
     }
     checkFlips()
-    checkBonus()
+    upBonus()
+    applyBonus()
   }
 }
