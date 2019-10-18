@@ -208,9 +208,9 @@ const comparator = () => {
       flippedIcons.push( icon )
     }
   }
-  if(flippedIcons[0] == flippedIcons[1]) {
-    checkBonus(flippedIcons[0])
-  }
+  // if(flippedIcons[0] == flippedIcons[1]) {
+  //   checkBonus(flippedIcons[0])
+  // }
   return true ? (flippedIcons[0] == flippedIcons[1]) : false
 }
 // Chances
@@ -286,7 +286,7 @@ function flip(slot) {
       HTML('FlippedIcons').innerHTML = iconsFlippeds.toString()
     }
     checkFlips()
-    upBonus()
-    applyBonus()
+    //upBonus()
+    //applyBonus()
   }
 }
