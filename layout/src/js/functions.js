@@ -23,6 +23,7 @@ const stringPlusNumber 	= (string, number) => ( [string, number.toString()].join
  *  System Variables
  * =====================================================================
  */
+const delayGamePlay = 500
 const icons  = [
   'config-icon',
   'config-icon',
@@ -126,8 +127,12 @@ const unlockAll     = () => { permission = true }
 
 const addLocked     = (icon) => ( ['locked_', icon].join('') )
 const addSetdown    = (icon) => ( ['setdown_', icon].join('') )
-const removeStates  = (icon) => ( icon.split('_')[1] )
-
+const removeStates  = (icon) => {
+  if( icon.includes('setdown_') || icon.includes('locked_') ) {
+    return icon.split('_')[1]
+  }
+  return icon
+}
 const returnIcons   = (chanceSlots) => ( chanceSlots.map(c => ( HTML(c).className ) ) )
 const resetChances  = () => ( chances = [] )
 const incrementChances	  = (slot) => {
@@ -151,7 +156,6 @@ const createSequence = () => {
   }
   return array
 }
-
 const updateSlotsContent = () => {
   let content = []
   for(let i = 0; i < slotNumber; i++) {
@@ -162,12 +166,12 @@ const updateSlotsContent = () => {
 // Bonus
 const newBonus   = (newBonus) => ( bonus = newBonus )
 const emptyBonus = () => ( bonus = {'has': false} )
-const stackBonus = (bonus) => {
-  if( NOT( bonusStack.some(a => a === bonus) ) ) {
-    bonusStack.push(bonus)
+const stackBonus = (bonusFound) => {
+  if( NOT( bonusStack.some(b => b.icon === bonusFound.icon ) ) ) {
+    bonusStack.push(bonusFound)
   }
 }
-const drawBonus  = (bonus) => ( bonusStack.remove(bonus) )
+const drawBonus  = (bonusMatch) => ( bonusStack.remove(bonusMatch) )
 const checkBonus = (icon) => {
   if( NOT( bonus.icon === icon ) || bonusStack.length === 0 ) {
     incrementBonusPoint()
@@ -178,14 +182,14 @@ const checkBonus = (icon) => {
   }
 }
 const upBonus    = () => {
-  let slotsContentStateless = returnIcons(chances).map(removeStates)
-
+  let chancesStateless = returnIcons(chances).map(removeStates)
   bonusList.forEach(bonusItem => {
     let stack = {'icon': bonusItem.icon, 'request': bonusItem.request, 'has': true}
-    if( hasTwoInArray(slotsContentStateless, bonusItem.icon) ||
-        NOT( bonusStack.includes(stack) ) ) {
-      stackBonus(stack)
+    if( NOT( hasTwoInArray(chancesStateless, bonusItem.icon) ) ||
+        bonusStack.includes(stack) ) {
+      return
     }
+    stackBonus(stack)
   })
 }
 const applyBonus = () => ( HTML('bonus-request').innerHTML = bonus.has ? bonus.bonus : '' )
@@ -249,7 +253,7 @@ const checkFlips          = () => {
       success()
     }else {
       lockAll()
-      time = setTimeout( ()=>{fail(); unlockAll(); clearTimeout(time)}, 1500 )
+      time = setTimeout( ()=>{fail(); unlockAll(); clearTimeout(time)}, delayGamePlay )
     }
   incrementAttempt()
   updateSlotsContent()
