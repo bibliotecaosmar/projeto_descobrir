@@ -100,7 +100,9 @@ let bonus         = {'has': false}
 let bonusStack    = []
 let bonusList     = [
   {'icon': 'linux-icon', 'request': 'É um OS OpenSorce'},
-  {'icon': 'google-icon', 'request': 'Google'},
+  {'icon': 'google-icon', 'request': 'Ferramenta de pesquisar'},
+  {'icon': 'cpu-icon', 'request': 'É o núcleo do computador'},
+  {'icon': 'gps-icon', 'request': 'Usado para se localizar'}
 ]
 
 /**
@@ -172,8 +174,14 @@ const stackBonus = (bonusFound) => {
   }
 }
 const drawBonus  = (bonusMatch) => ( bonusStack.remove(bonusMatch) )
+const setBonus   = () => {
+  if( NOT( bonus.has || bonusStack.length === 0 ) ) {
+    newBonus(bonusStack.pop())
+    applyBonus()
+  }
+}
 const checkBonus = (icon) => {
-  if( NOT( bonus.icon === icon ) || bonusStack.length === 0 ) {
+  if( NOT( bonus.icon != icon ) || bonusStack.length === 0 ) {
     incrementBonusPoint()
     newBonus(bonusStack.pop())
   }
@@ -192,7 +200,7 @@ const upBonus    = () => {
     stackBonus(stack)
   })
 }
-const applyBonus = () => ( HTML('bonus-request').innerHTML = bonus.has ? bonus.bonus : '' )
+const applyBonus = () => ( HTML('bonus-request').innerHTML = bonus.has ? bonus.request : '' )
 // Icons
 const setIcons = (order) => {
   for(let i = 0; i < slotNumber; i++) {
@@ -258,6 +266,7 @@ const checkFlips          = () => {
   incrementAttempt()
   updateSlotsContent()
   checkEndGame()
+  setBonus()
   }
 }
 const checkEndGame  = () => {
