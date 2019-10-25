@@ -158,13 +158,7 @@ const createSequence = () => {
   }
   return array
 }
-const updateSlotsContent = () => {
-  let content = []
-  for(let i = 0; i < slotNumber; i++) {
-    content.push(HTML(slots[i]).className)
-  }
-  slotsContent = content
-}
+const updateSlotsContent = () => ( slotsContent = slots.map( slot => ( HTML(slot).className ) ) )
 // Bonus
 const newBonus   = (newBonus) => ( bonus = newBonus )
 const emptyBonus = () => ( bonus = {'has': false} )
@@ -181,13 +175,13 @@ const setBonus   = () => {
   }
 }
 const checkBonus = (icon) => {
-  if( NOT( bonus.icon != icon ) || bonusStack.length === 0 ) {
-    incrementBonusPoint()
-    newBonus(bonusStack.pop())
-  }
-  if( bonusStack.length === 0 ) {
+  if( NOT( bonus.icon === icon ) || bonusStack.length != 0 ) {
     emptyBonus()
+    return
   }
+  incrementBonusPoint()
+  newBonus(bonusStack.pop())
+  applyBonus()
 }
 const upBonus    = () => {
   let chancesStateless = returnIcons(chances).map(removeStates)
@@ -314,8 +308,8 @@ function flip(slot) {
     }
 
     incrementChances(stringPlusNumber('slot-', slot))
+    applyBonus()
     checkFlips()
     upBonus()
-    applyBonus()
   }
 }
