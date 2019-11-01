@@ -23,7 +23,9 @@ const stringPlusNumber 	= (string, number) => ( [string, number.toString()].join
  *  System Variables
  * =====================================================================
  */
-const delayGamePlay = 500
+const delayGamePlay = 1500
+const delayStartGame = 3000
+
 const icons  = [
   'config-icon',
   'config-icon',
@@ -148,7 +150,7 @@ const incrementChances	  = (slot) => {
  * ===================================================================== 
  */
 // Generators
-const createSequence = () => {
+const createSequence      = () => {
   let array = []
   while( array.length < slotNumber) {
     let x = randomNum(slotNumber)
@@ -158,23 +160,23 @@ const createSequence = () => {
   }
   return array
 }
-const updateSlotsContent = () => ( slotsContent = slots.map( slot => ( HTML(slot).className ) ) )
+const updateSlotsContent  = () => ( slotsContent = slots.map( slot => ( HTML(slot).className ) ) )
 // Bonus
-const newBonus   = (newBonus) => ( bonus = newBonus )
-const emptyBonus = () => ( bonus = {'has': false} )
-const stackBonus = (bonusFound) => {
+const newBonus     = (newBonus) => ( bonus = newBonus )
+const emptyBonus   = () => ( bonus = {'has': false} )
+const stackBonus   = (bonusFound) => {
   if( NOT( bonusStack.some(b => b.icon === bonusFound.icon ) ) ) {
     bonusStack.push(bonusFound)
   }
 }
-const drawBonus  = (bonusMatch) => ( bonusStack.remove(bonusMatch) )
-const setBonus   = () => {
+const drawBonus    = (bonusMatch) => ( bonusStack.remove(bonusMatch) )
+const setBonus     = () => {
   if( NOT( bonus.has || bonusStack.length === 0 ) ) {
     newBonus(bonusStack.pop())
     applyBonus()
   }
 }
-const checkBonus = (icon) => {
+const checkBonus   = (icon) => {
   if( NOT( bonus.icon === icon ) || bonusStack.length != 0 ) {
     emptyBonus()
     return
@@ -183,7 +185,7 @@ const checkBonus = (icon) => {
   newBonus(bonusStack.pop())
   applyBonus()
 }
-const upBonus    = () => {
+const updateBonus  = () => {
   let chancesStateless = returnIcons(chances).map(removeStates)
   bonusList.forEach(bonusItem => {
     let stack = {'icon': bonusItem.icon, 'request': bonusItem.request, 'has': true}
@@ -194,23 +196,17 @@ const upBonus    = () => {
     stackBonus(stack)
   })
 }
-const applyBonus = () => ( HTML('bonus-request').innerHTML = bonus.has ? bonus.request : '' )
+const applyBonus   = () => ( HTML('bonus-request').innerHTML = bonus.has ? bonus.request : '' )
 // Icons
-const setIcons = (order) => {
+const showAllIcons = () => ( slots.forEach( s => ( HTML(s).className = removeStates(HTML(s).className) ) ) )
+const setAllIcons  = () => ( slots.forEach( s => ( HTML(s).className = addSetdown(HTML(s).className ) ) ) )
+const setIcons     = (order) => {
   for(let i = 0; i < slotNumber; i++) {
     HTML((i+1), 'slot-').className = 'setdown_'+( icons[order[i]] )
   }
 }
-const setIconsNotLockeds = () => {
-  for(let i = 0; i < slotNumber; i++) {
-    let icon = HTML(slots[i]).className
-    if( NOT( icon.includes('setdown_') ||
-             icon.includes('locked_') ) ) {
-      HTML(slots[i]).className = addSetdown(icon)
-    }
-  }
-}
-const lockIcons = () => {
+
+const lockIcons    = () => {
   for(let i = 0; i < slotNumber; i++) {
     let icon = HTML( slots[i] ).className
     if( NOT( icon.includes('setdown_') ||
@@ -220,7 +216,7 @@ const lockIcons = () => {
   }
   HTML('FlippedIcons').innerHTML = "0"
 }
-const comparator = () => {
+const comparator   = () => {
   let flippedIcons = []
   for(let i = 0; i < slotNumber; i++) {
     let icon = HTML( slots[i] ).className
@@ -235,21 +231,36 @@ const comparator = () => {
   }
   return false
 }
+const setIconsNotLockeds  = () => {
+  for(let i = 0; i < slotNumber; i++) {
+    let icon = HTML(slots[i]).className
+    if( NOT( icon.includes('setdown_') ||
+             icon.includes('locked_') ) ) {
+      HTML(slots[i]).className = addSetdown(icon)
+    }
+  }
+}
 // Chances
-const incrementAttempt    = () => ( HTML('attempt').innerHTML = parseInt(HTML('attempt').innerHTML)+1 )
-const success 	          = () => {
+const incrementAttempt = () => ( HTML('attempt').innerHTML = parseInt(HTML('attempt').innerHTML)+1 )
+
+const showAll          = () => {
+  lockAll()
+  showAllIcons()
+  time = setTimeout( ()=>{setAllIcons(); unlockAll(); clearTimeout(time)}, delayStartGame )
+}
+const success 	       = () => {
   addPoints()
   lockIcons()
 }
-const fail 		            = () => {
+const fail 		         = () => {
   deductPoints()
   resetChance()
 }
-const resetChance         = () => {
+const resetChance      = () => {
   setIconsNotLockeds()
   HTML('FlippedIcons').innerHTML = "0"
 }
-const checkFlips          = () => {
+const checkFlips       = () => {
   if( HTML('FlippedIcons').innerHTML == 2 ) {
     if( comparator() ) {
       success()
@@ -263,12 +274,12 @@ const checkFlips          = () => {
   setBonus()
   }
 }
-const checkEndGame  = () => {
+const checkEndGame     = () => {
   if(slotsContent.every((a) => a.includes('locked_'))) {
     resetGame()
   }
 }
-const resetGame     = () => {
+const resetGame        = () => {
   permission = false
 
   resetChances()
@@ -294,6 +305,7 @@ function startGame() {
 
   setIcons(newOrder)
   HTML('main-button').style.display = "none"
+  showAll()
 }
 
 function flip(slot) {
@@ -310,6 +322,6 @@ function flip(slot) {
     incrementChances(stringPlusNumber('slot-', slot))
     applyBonus()
     checkFlips()
-    upBonus()
+    updateBonus()
   }
 }
