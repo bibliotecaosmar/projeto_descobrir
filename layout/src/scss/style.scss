@@ -49,7 +49,8 @@ div.bg-main-blue {
 div.background-image {
   position: absolute;
   width: 100%;
-  height: 145vh;
+  height: 100vh;
+  max-height: 135vh;
   background: url(../asset/background-image.png) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -78,7 +79,7 @@ div.bonus-hub {
   font-size: 18px;
   width: 100%;
   height: 32px;
-  max-width: 40rem;
+  max-width: 60rem;
   border-radius: 8px;
 }
 
@@ -110,79 +111,72 @@ $setdown: setdown_ !default;
 $locked: locked_ !default;
 
 div.set {
-  background: url(../asset/icons/setcard.png) no-repeat;
-  width: 5.5rem;
-  height: 5.5rem;
-  min-width: 44px;
+  background: url(../asset/cards/setcard.jpg) no-repeat;
+  background-color: white;
+  width: 9.3125rem;
+  height: 6rem;
+  min-width: 11px;
 }
 
-//icons
-$icons: (
-  'icon-1': (
-    'name': 'config-icon',
-    'link': '../asset/icons/config-icon.png',
+//cards
+$cards: (
+  'card-1': (
+    'name': 'card-chrome',
+    'link': '../asset/cards/card-chrome.jpg',
   ),
-  'icon-2': (
-    'name': 'cpu-icon',
-    'link': '../asset/icons/cpu-icon.png',
+  'card-2': (
+    'name': 'card-email',
+    'link': '../asset/cards/card-email.jpg',
   ),
-  'icon-3': (
-    'name': 'google-icon',
-    'link': '../asset/icons/google-icon.png',
+  'card-3': (
+    'name': 'card-estabilizador',
+    'link': '../asset/cards/card-estabilizador.jpg',
   ),
-  'icon-4': (
-    'name': 'gps-icon',
-    'link': '../asset/icons/gps-icon.png',
+  'card-4': (
+    'name': 'card-google',
+    'link': '../asset/cards/card-google.jpg',
   ),
-  'icon-5': (
-    'name': 'hd-icon',
-    'link': '../asset/icons/hd-icon.png',
+  'card-5': (
+    'name': 'card-notebook',
+    'link': '../asset/cards/card-notebook.jpg',
   ),
-  'icon-6': (
-    'name': 'home-icon',
-    'link': '../asset/icons/home-icon.png',
+  'card-6': (
+    'name': 'card-virus',
+    'link': '../asset/cards/card-virus.jpg',
   ),
-  'icon-7': (
-    'name': 'linux-icon',
-    'link': '../asset/icons/linux-icon.png',
+  'card-7': (
+    'name': 'card-windows',
+    'link': '../asset/cards/card-windows.jpg',
   ),
-  'icon-8': (
-    'name': 'menu-icon',
-    'link': '../asset/icons/menu-icon.png',
-  ),
-  'icon-9': (
-    'name': 'share-icon',
-    'link': '../asset/icons/share-icon.png',
-  ),
-  'icon-10': (
-    'name': 'windows-icon',
-    'link': '../asset/icons/windows-icon.png',
+  'card-8': (
+    'name': 'card-word',
+    'link': '../asset/cards/card-word.jpg',
   ),
 );
 
-@each $icon, $key in $icons {
+@each $card, $key in $cards {
   .#{$setdown}#{map-get($key, 'name')} {
-    background: url(../asset/icons/setcard.png) no-repeat;
-    width: 88px;
-    height: 88px;
-    min-width: 44px;
+    background: url(../asset/cards/setcard.jpg) no-repeat;
+    width: 9.3125rem;
+    height: 6rem;
+    min-width: 11px;
   }
 }
 
-@each $icon, $key in $icons {
+@each $card, $key in $cards {
   .#{map-get($key, 'name')} {
     background: url(map-get($key, 'link')) no-repeat;
-    width: 88px;
-    height: 88px;
-    min-width: 44px;
+    width: 9.3125rem;
+    height: 6rem;
+    min-width: 11px;
   }
 }
 
-@each $icon, $key in $icons {
+@each $card, $key in $cards {
   .#{$locked}#{map-get($key, 'name')} {
 	  background: url(map-get($key, 'link')) no-repeat;
-    width: 88px;
-    height: 88px;
-    min-width: 44px;
+    width: 9.3125rem;
+    height: 6rem;
+    min-width: 11px;
   }
 }

@@ -26,27 +26,23 @@ const stringPlusNumber 	= (string, number) => ( [string, number.toString()].join
 const delayGamePlay = 1500
 const delayStartGame = 3000
 
-const icons  = [
-  'config-icon',
-  'config-icon',
-  'cpu-icon',
-  'cpu-icon',
-  'google-icon',
-  'google-icon',
-  'gps-icon',
-  'gps-icon',
-  'hd-icon',
-  'hd-icon',
-  'home-icon',
-  'home-icon',
-  'linux-icon',
-  'linux-icon',
-  'menu-icon',
-  'menu-icon',
-  'share-icon',
-  'share-icon',
-  'windows-icon',
-  'windows-icon',
+const cards  = [
+  'card-chrome',
+  'card-chrome',
+  'card-email',
+  'card-email',
+  'card-estabilizador',
+  'card-estabilizador',
+  'card-google',
+  'card-google',
+  'card-notebook',
+  'card-notebook',
+  'card-virus',
+  'card-virus',
+  'card-windows',
+  'card-windows',
+  'card-word',
+  'card-word',
 ]
 const slots = [
   'slot-1',
@@ -65,12 +61,8 @@ const slots = [
   'slot-14',
   'slot-15',
   'slot-16',
-  'slot-17',
-  'slot-18',
-  'slot-19',
-  'slot-20',
 ]
-const iconNumber = icons.length
+const cardNumber = cards.length
 const slotNumber = slots.length
 
 let slotsContent  = [
@@ -101,10 +93,10 @@ let permission    = false
 let bonus         = {'has': false}
 let bonusStack    = []
 let bonusList     = [
-  {'icon': 'linux-icon', 'request': 'É um OS OpenSorce'},
-  {'icon': 'google-icon', 'request': 'Ferramenta de pesquisar'},
-  {'icon': 'cpu-icon', 'request': 'É o núcleo do computador'},
-  {'icon': 'gps-icon', 'request': 'Usado para se localizar'}
+  {'card': 'linux-card', 'request': 'É um OS OpenSorce'},
+  {'card': 'google-card', 'request': 'Ferramenta de pesquisar'},
+  {'card': 'cpu-card', 'request': 'É o núcleo do computador'},
+  {'card': 'gps-card', 'request': 'Usado para se localizar'}
 ]
 
 /**
@@ -129,13 +121,13 @@ const incrementBonusPoint = () => ( HTML('points').innerHTML = pointToGain(parse
 const lockAll       = () => { permission = false }
 const unlockAll     = () => { permission = true }
 
-const addLocked     = (icon) => ( ['locked_', icon].join('') )
-const addSetdown    = (icon) => ( ['setdown_', icon].join('') )
-const removeStates  = (icon) => {
-  if( icon.includes('setdown_') || icon.includes('locked_') ) {
-    return icon.split('_')[1]
+const addLocked     = (card) => ( ['locked_', card].join('') )
+const addSetdown    = (card) => ( ['setdown_', card].join('') )
+const removeStates  = (card) => {
+  if( card.includes('setdown_') || card.includes('locked_') ) {
+    return card.split('_')[1]
   }
-  return icon
+  return card
 }
 const returnIcons   = (chanceSlots) => ( chanceSlots.map(c => ( HTML(c).className ) ) )
 const resetChances  = () => ( chances = [] )
@@ -165,7 +157,7 @@ const updateSlotsContent  = () => ( slotsContent = slots.map( slot => ( HTML(slo
 const newBonus     = (newBonus) => ( bonus = newBonus )
 const emptyBonus   = () => ( bonus = {'has': false} )
 const stackBonus   = (bonusFound) => {
-  if( NOT( bonusStack.some(b => b.icon === bonusFound.icon ) ) ) {
+  if( NOT( bonusStack.some(b => b.card === bonusFound.card ) ) ) {
     bonusStack.push(bonusFound)
   }
 }
@@ -176,8 +168,8 @@ const setBonus     = () => {
     applyBonus()
   }
 }
-const checkBonus   = (icon) => {
-  if( NOT( bonus.icon === icon ) || bonusStack.length != 0 ) {
+const checkBonus   = (card) => {
+  if( NOT( bonus.card === card ) || bonusStack.length != 0 ) {
     emptyBonus()
     return
   }
@@ -188,8 +180,8 @@ const checkBonus   = (icon) => {
 const updateBonus  = () => {
   let chancesStateless = returnIcons(chances).map(removeStates)
   bonusList.forEach(bonusItem => {
-    let stack = {'icon': bonusItem.icon, 'request': bonusItem.request, 'has': true}
-    if( NOT( hasTwoInArray(chancesStateless, bonusItem.icon) ) ||
+    let stack = {'card': bonusItem.card, 'request': bonusItem.request, 'has': true}
+    if( NOT( hasTwoInArray(chancesStateless, bonusItem.card) ) ||
         bonusStack.includes(stack) ) {
       return
     }
@@ -202,16 +194,16 @@ const showAllIcons = () => ( slots.forEach( s => ( HTML(s).className = removeSta
 const setAllIcons  = () => ( slots.forEach( s => ( HTML(s).className = addSetdown(HTML(s).className ) ) ) )
 const setIcons     = (order) => {
   for(let i = 0; i < slotNumber; i++) {
-    HTML((i+1), 'slot-').className = 'setdown_'+( icons[order[i]] )
+    HTML((i+1), 'slot-').className = 'setdown_'+( cards[order[i]] )
   }
 }
 
 const lockIcons    = () => {
   for(let i = 0; i < slotNumber; i++) {
-    let icon = HTML( slots[i] ).className
-    if( NOT( icon.includes('setdown_') ||
-             icon.includes('locked_') ) ) {
-      HTML( slots[i] ).className = addLocked(icon)
+    let card = HTML( slots[i] ).className
+    if( NOT( card.includes('setdown_') ||
+             card.includes('locked_') ) ) {
+      HTML( slots[i] ).className = addLocked(card)
     }
   }
   HTML('FlippedIcons').innerHTML = "0"
@@ -219,10 +211,10 @@ const lockIcons    = () => {
 const comparator   = () => {
   let flippedIcons = []
   for(let i = 0; i < slotNumber; i++) {
-    let icon = HTML( slots[i] ).className
-    if( NOT( icon.includes('setdown_') ||
-             icon.includes('locked_') ) ) {
-      flippedIcons.push(icon)
+    let card = HTML( slots[i] ).className
+    if( NOT( card.includes('setdown_') ||
+             card.includes('locked_') ) ) {
+      flippedIcons.push(card)
     }
   }
   if(flippedIcons[0] == flippedIcons[1]) {
@@ -233,10 +225,10 @@ const comparator   = () => {
 }
 const setIconsNotLockeds  = () => {
   for(let i = 0; i < slotNumber; i++) {
-    let icon = HTML(slots[i]).className
-    if( NOT( icon.includes('setdown_') ||
-             icon.includes('locked_') ) ) {
-      HTML(slots[i]).className = addSetdown(icon)
+    let card = HTML(slots[i]).className
+    if( NOT( card.includes('setdown_') ||
+             card.includes('locked_') ) ) {
+      HTML(slots[i]).className = addSetdown(card)
     }
   }
 }
@@ -310,11 +302,11 @@ function startGame() {
 
 function flip(slot) {
   if(permission) {
-    icon = HTML(slot, 'slot-').className
+    card = HTML(slot, 'slot-').className
     iconsFlippeds = parseInt(HTML('FlippedIcons').innerHTML)
    
-    if( icon.includes('setdown_') ) {
-      HTML(slot, 'slot-').className = removeStates(icon)
+    if( card.includes('setdown_') ) {
+      HTML(slot, 'slot-').className = removeStates(card)
       ++iconsFlippeds
       HTML('FlippedIcons').innerHTML = iconsFlippeds.toString()
     }

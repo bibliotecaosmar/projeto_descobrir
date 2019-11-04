@@ -25,7 +25,8 @@ div.bg-main-blue {
 div.background-image {
   position: absolute;
   width: 100%;
-  height: 145vh;
+  height: 100vh;
+  max-height: 135vh;
   background: url(../asset/background-image.png) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -51,7 +52,7 @@ div.bonus-hub {
   font-size: 18px;
   width: 100%;
   height: 32px;
-  max-width: 40rem;
+  max-width: 60rem;
   border-radius: 8px; }
 
 div.bonus-header {
@@ -75,187 +76,152 @@ button.main-button {
 * ========================================
 */
 div.set {
-  background: url(../asset/icons/setcard.png) no-repeat;
-  width: 5.5rem;
-  height: 5.5rem;
-  min-width: 44px; }
+  background: url(../asset/cards/setcard.jpg) no-repeat;
+  background-color: white;
+  width: 9.3125rem;
+  height: 6rem;
+  min-width: 11px; }
 
-.setdown_config-icon {
-  background: url(../asset/icons/setcard.png) no-repeat;
-  width: 88px;
-  height: 88px;
-  min-width: 44px; }
+.setdown_card-chrome {
+  background: url(../asset/cards/setcard.jpg) no-repeat;
+  width: 9.3125rem;
+  height: 6rem;
+  min-width: 11px; }
 
-.setdown_cpu-icon {
-  background: url(../asset/icons/setcard.png) no-repeat;
-  width: 88px;
-  height: 88px;
-  min-width: 44px; }
+.setdown_card-email {
+  background: url(../asset/cards/setcard.jpg) no-repeat;
+  width: 9.3125rem;
+  height: 6rem;
+  min-width: 11px; }
 
-.setdown_google-icon {
-  background: url(../asset/icons/setcard.png) no-repeat;
-  width: 88px;
-  height: 88px;
-  min-width: 44px; }
+.setdown_card-estabilizador {
+  background: url(../asset/cards/setcard.jpg) no-repeat;
+  width: 9.3125rem;
+  height: 6rem;
+  min-width: 11px; }
 
-.setdown_gps-icon {
-  background: url(../asset/icons/setcard.png) no-repeat;
-  width: 88px;
-  height: 88px;
-  min-width: 44px; }
+.setdown_card-google {
+  background: url(../asset/cards/setcard.jpg) no-repeat;
+  width: 9.3125rem;
+  height: 6rem;
+  min-width: 11px; }
 
-.setdown_hd-icon {
-  background: url(../asset/icons/setcard.png) no-repeat;
-  width: 88px;
-  height: 88px;
-  min-width: 44px; }
+.setdown_card-notebook {
+  background: url(../asset/cards/setcard.jpg) no-repeat;
+  width: 9.3125rem;
+  height: 6rem;
+  min-width: 11px; }
 
-.setdown_home-icon {
-  background: url(../asset/icons/setcard.png) no-repeat;
-  width: 88px;
-  height: 88px;
-  min-width: 44px; }
+.setdown_card-virus {
+  background: url(../asset/cards/setcard.jpg) no-repeat;
+  width: 9.3125rem;
+  height: 6rem;
+  min-width: 11px; }
 
-.setdown_linux-icon {
-  background: url(../asset/icons/setcard.png) no-repeat;
-  width: 88px;
-  height: 88px;
-  min-width: 44px; }
+.setdown_card-windows {
+  background: url(../asset/cards/setcard.jpg) no-repeat;
+  width: 9.3125rem;
+  height: 6rem;
+  min-width: 11px; }
 
-.setdown_menu-icon {
-  background: url(../asset/icons/setcard.png) no-repeat;
-  width: 88px;
-  height: 88px;
-  min-width: 44px; }
+.setdown_card-word {
+  background: url(../asset/cards/setcard.jpg) no-repeat;
+  width: 9.3125rem;
+  height: 6rem;
+  min-width: 11px; }
 
-.setdown_share-icon {
-  background: url(../asset/icons/setcard.png) no-repeat;
-  width: 88px;
-  height: 88px;
-  min-width: 44px; }
+.card-chrome {
+  background: url("../asset/cards/card-chrome.jpg") no-repeat;
+  width: 9.3125rem;
+  height: 6rem;
+  min-width: 11px; }
 
-.setdown_windows-icon {
-  background: url(../asset/icons/setcard.png) no-repeat;
-  width: 88px;
-  height: 88px;
-  min-width: 44px; }
+.card-email {
+  background: url("../asset/cards/card-email.jpg") no-repeat;
+  width: 9.3125rem;
+  height: 6rem;
+  min-width: 11px; }
 
-.config-icon {
-  background: url("../asset/icons/config-icon.png") no-repeat;
-  width: 88px;
-  height: 88px;
-  min-width: 44px; }
+.card-estabilizador {
+  background: url("../asset/cards/card-estabilizador.jpg") no-repeat;
+  width: 9.3125rem;
+  height: 6rem;
+  min-width: 11px; }
 
-.cpu-icon {
-  background: url("../asset/icons/cpu-icon.png") no-repeat;
-  width: 88px;
-  height: 88px;
-  min-width: 44px; }
+.card-google {
+  background: url("../asset/cards/card-google.jpg") no-repeat;
+  width: 9.3125rem;
+  height: 6rem;
+  min-width: 11px; }
 
-.google-icon {
-  background: url("../asset/icons/google-icon.png") no-repeat;
-  width: 88px;
-  height: 88px;
-  min-width: 44px; }
+.card-notebook {
+  background: url("../asset/cards/card-notebook.jpg") no-repeat;
+  width: 9.3125rem;
+  height: 6rem;
+  min-width: 11px; }
 
-.gps-icon {
-  background: url("../asset/icons/gps-icon.png") no-repeat;
-  width: 88px;
-  height: 88px;
-  min-width: 44px; }
+.card-virus {
+  background: url("../asset/cards/card-virus.jpg") no-repeat;
+  width: 9.3125rem;
+  height: 6rem;
+  min-width: 11px; }
 
-.hd-icon {
-  background: url("../asset/icons/hd-icon.png") no-repeat;
-  width: 88px;
-  height: 88px;
-  min-width: 44px; }
+.card-windows {
+  background: url("../asset/cards/card-windows.jpg") no-repeat;
+  width: 9.3125rem;
+  height: 6rem;
+  min-width: 11px; }
 
-.home-icon {
-  background: url("../asset/icons/home-icon.png") no-repeat;
-  width: 88px;
-  height: 88px;
-  min-width: 44px; }
+.card-word {
+  background: url("../asset/cards/card-word.jpg") no-repeat;
+  width: 9.3125rem;
+  height: 6rem;
+  min-width: 11px; }
 
-.linux-icon {
-  background: url("../asset/icons/linux-icon.png") no-repeat;
-  width: 88px;
-  height: 88px;
-  min-width: 44px; }
+.locked_card-chrome {
+  background: url("../asset/cards/card-chrome.jpg") no-repeat;
+  width: 9.3125rem;
+  height: 6rem;
+  min-width: 11px; }
 
-.menu-icon {
-  background: url("../asset/icons/menu-icon.png") no-repeat;
-  width: 88px;
-  height: 88px;
-  min-width: 44px; }
+.locked_card-email {
+  background: url("../asset/cards/card-email.jpg") no-repeat;
+  width: 9.3125rem;
+  height: 6rem;
+  min-width: 11px; }
 
-.share-icon {
-  background: url("../asset/icons/share-icon.png") no-repeat;
-  width: 88px;
-  height: 88px;
-  min-width: 44px; }
+.locked_card-estabilizador {
+  background: url("../asset/cards/card-estabilizador.jpg") no-repeat;
+  width: 9.3125rem;
+  height: 6rem;
+  min-width: 11px; }
 
-.windows-icon {
-  background: url("../asset/icons/windows-icon.png") no-repeat;
-  width: 88px;
-  height: 88px;
-  min-width: 44px; }
+.locked_card-google {
+  background: url("../asset/cards/card-google.jpg") no-repeat;
+  width: 9.3125rem;
+  height: 6rem;
+  min-width: 11px; }
 
-.locked_config-icon {
-  background: url("../asset/icons/config-icon.png") no-repeat;
-  width: 88px;
-  height: 88px;
-  min-width: 44px; }
+.locked_card-notebook {
+  background: url("../asset/cards/card-notebook.jpg") no-repeat;
+  width: 9.3125rem;
+  height: 6rem;
+  min-width: 11px; }
 
-.locked_cpu-icon {
-  background: url("../asset/icons/cpu-icon.png") no-repeat;
-  width: 88px;
-  height: 88px;
-  min-width: 44px; }
+.locked_card-virus {
+  background: url("../asset/cards/card-virus.jpg") no-repeat;
+  width: 9.3125rem;
+  height: 6rem;
+  min-width: 11px; }
 
-.locked_google-icon {
-  background: url("../asset/icons/google-icon.png") no-repeat;
-  width: 88px;
-  height: 88px;
-  min-width: 44px; }
+.locked_card-windows {
+  background: url("../asset/cards/card-windows.jpg") no-repeat;
+  width: 9.3125rem;
+  height: 6rem;
+  min-width: 11px; }
 
-.locked_gps-icon {
-  background: url("../asset/icons/gps-icon.png") no-repeat;
-  width: 88px;
-  height: 88px;
-  min-width: 44px; }
-
-.locked_hd-icon {
-  background: url("../asset/icons/hd-icon.png") no-repeat;
-  width: 88px;
-  height: 88px;
-  min-width: 44px; }
-
-.locked_home-icon {
-  background: url("../asset/icons/home-icon.png") no-repeat;
-  width: 88px;
-  height: 88px;
-  min-width: 44px; }
-
-.locked_linux-icon {
-  background: url("../asset/icons/linux-icon.png") no-repeat;
-  width: 88px;
-  height: 88px;
-  min-width: 44px; }
-
-.locked_menu-icon {
-  background: url("../asset/icons/menu-icon.png") no-repeat;
-  width: 88px;
-  height: 88px;
-  min-width: 44px; }
-
-.locked_share-icon {
-  background: url("../asset/icons/share-icon.png") no-repeat;
-  width: 88px;
-  height: 88px;
-  min-width: 44px; }
-
-.locked_windows-icon {
-  background: url("../asset/icons/windows-icon.png") no-repeat;
-  width: 88px;
-  height: 88px;
-  min-width: 44px; }
+.locked_card-word {
+  background: url("../asset/cards/card-word.jpg") no-repeat;
+  width: 9.3125rem;
+  height: 6rem;
+  min-width: 11px; }
