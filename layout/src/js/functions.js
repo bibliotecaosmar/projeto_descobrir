@@ -129,7 +129,7 @@ const removeStates  = (card) => {
   }
   return card
 }
-const returnIcons   = (chanceSlots) => ( chanceSlots.map(c => ( HTML(c).className ) ) )
+const returnCards   = (chanceSlots) => ( chanceSlots.map(c => ( HTML(c).className ) ) )
 const resetChances  = () => ( chances = [] )
 const incrementChances	  = (slot) => {
   if( NOT( chances.includes(slot) ) ){
@@ -178,7 +178,7 @@ const checkBonus   = (card) => {
   applyBonus()
 }
 const updateBonus  = () => {
-  let chancesStateless = returnIcons(chances).map(removeStates)
+  let chancesStateless = returnCards(chances).map(removeStates)
   bonusList.forEach(bonusItem => {
     let stack = {'card': bonusItem.card, 'request': bonusItem.request, 'has': true}
     if( NOT( hasTwoInArray(chancesStateless, bonusItem.card) ) ||
@@ -189,16 +189,16 @@ const updateBonus  = () => {
   })
 }
 const applyBonus   = () => ( HTML('bonus-request').innerHTML = bonus.has ? bonus.request : '' )
-// Icons
-const showAllIcons = () => ( slots.forEach( s => ( HTML(s).className = removeStates(HTML(s).className) ) ) )
-const setAllIcons  = () => ( slots.forEach( s => ( HTML(s).className = addSetdown(HTML(s).className ) ) ) )
-const setIcons     = (order) => {
+// Cards
+const showAllCards = () => ( slots.forEach( s => ( HTML(s).className = removeStates(HTML(s).className) ) ) )
+const setAllCards  = () => ( slots.forEach( s => ( HTML(s).className = addSetdown(HTML(s).className ) ) ) )
+const setCards     = (order) => {
   for(let i = 0; i < slotNumber; i++) {
     HTML((i+1), 'slot-').className = 'setdown_'+( cards[order[i]] )
   }
 }
 
-const lockIcons    = () => {
+const lockCards    = () => {
   for(let i = 0; i < slotNumber; i++) {
     let card = HTML( slots[i] ).className
     if( NOT( card.includes('setdown_') ||
@@ -206,24 +206,24 @@ const lockIcons    = () => {
       HTML( slots[i] ).className = addLocked(card)
     }
   }
-  HTML('FlippedIcons').innerHTML = "0"
+  HTML('FlippedCards').innerHTML = "0"
 }
 const comparator   = () => {
-  let flippedIcons = []
+  let flippedCards = []
   for(let i = 0; i < slotNumber; i++) {
     let card = HTML( slots[i] ).className
     if( NOT( card.includes('setdown_') ||
              card.includes('locked_') ) ) {
-      flippedIcons.push(card)
+      flippedCards.push(card)
     }
   }
-  if(flippedIcons[0] == flippedIcons[1]) {
-    checkBonus(flippedIcons[0])
+  if(flippedCards[0] == flippedCards[1]) {
+    checkBonus(flippedCards[0])
     return true
   }
   return false
 }
-const setIconsNotLockeds  = () => {
+const setCardsNotLockeds  = () => {
   for(let i = 0; i < slotNumber; i++) {
     let card = HTML(slots[i]).className
     if( NOT( card.includes('setdown_') ||
@@ -237,23 +237,23 @@ const incrementAttempt = () => ( HTML('attempt').innerHTML = parseInt(HTML('atte
 
 const showAll          = () => {
   lockAll()
-  showAllIcons()
-  time = setTimeout( ()=>{setAllIcons(); unlockAll(); clearTimeout(time)}, delayStartGame )
+  showAllCards()
+  time = setTimeout( ()=>{setAllCards(); unlockAll(); clearTimeout(time)}, delayStartGame )
 }
 const success 	       = () => {
   addPoints()
-  lockIcons()
+  lockCards()
 }
 const fail 		         = () => {
   deductPoints()
   resetChance()
 }
 const resetChance      = () => {
-  setIconsNotLockeds()
-  HTML('FlippedIcons').innerHTML = "0"
+  setCardsNotLockeds()
+  HTML('FlippedCards').innerHTML = "0"
 }
 const checkFlips       = () => {
-  if( HTML('FlippedIcons').innerHTML == 2 ) {
+  if( HTML('FlippedCards').innerHTML == 2 ) {
     if( comparator() ) {
       success()
     }else {
@@ -295,7 +295,7 @@ function startGame() {
     newOrder.push(parseInt(sequence[i]))
   }
 
-  setIcons(newOrder)
+  setCards(newOrder)
   HTML('main-button').style.display = "none"
   showAll()
 }
@@ -303,12 +303,12 @@ function startGame() {
 function flip(slot) {
   if(permission) {
     card = HTML(slot, 'slot-').className
-    iconsFlippeds = parseInt(HTML('FlippedIcons').innerHTML)
+    cardsFlippeds = parseInt(HTML('FlippedCards').innerHTML)
    
     if( card.includes('setdown_') ) {
       HTML(slot, 'slot-').className = removeStates(card)
-      ++iconsFlippeds
-      HTML('FlippedIcons').innerHTML = iconsFlippeds.toString()
+      ++cardsFlippeds
+      HTML('FlippedCards').innerHTML = cardsFlippeds.toString()
     }
 
     incrementChances(stringPlusNumber('slot-', slot))
