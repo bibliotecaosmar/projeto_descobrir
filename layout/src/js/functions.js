@@ -23,10 +23,9 @@ const stringPlusNumber 	= (string, number) => ( [string, number.toString()].join
  *  System Variables
  * =====================================================================
  */
-const delayGamePlay = 1500
+const delayGamePlay  = 1500
 const delayStartGame = 3000
-
-const cards  = [
+const cards          = [
   'card-chrome',
   'card-chrome',
   'card-email',
@@ -44,7 +43,7 @@ const cards  = [
   'card-word',
   'card-word',
 ]
-const slots = [
+const slots          = [
   'slot-1',
   'slot-2',
   'slot-3',
@@ -62,9 +61,13 @@ const slots = [
   'slot-15',
   'slot-16',
 ]
-const cardNumber = cards.length
-const slotNumber = slots.length
+const cardNumber     = cards.length
+const slotNumber     = slots.length
+const bonusList      = [
+  {'card': 'card-chrome', 'request': 'Navegador(Browser) de internet'},
+]
 
+// let chances		    = []
 let slotsContent  = [
   'set',
   'set',
@@ -88,16 +91,9 @@ let slotsContent  = [
   'set',
 ]
 let sequence	    = []
-let chances		    = []
 let permission    = false
 let bonus         = {'has': false}
-let bonusStack    = []
-let bonusList     = [
-  {'card': 'linux-card', 'request': 'É um OS OpenSorce'},
-  {'card': 'google-card', 'request': 'Ferramenta de pesquisar'},
-  {'card': 'cpu-card', 'request': 'É o núcleo do computador'},
-  {'card': 'gps-card', 'request': 'Usado para se localizar'}
-]
+let bonusStack    = bonusList.map(b => ( {'has': true, 'card': b['card'], 'resquest': b.request} ))
 
 /**
  *  Subprocess Functions
@@ -105,6 +101,7 @@ let bonusList     = [
  */
 // Mathematical ~
 const randomNum = (size) => ( Math.floor( Math.random() * size ) )
+
 // Points
 const pointToGain   = (points, bonus = false) => ( bonus ? points+10 : points+5 )
 const pointToLose   = (points) => { 
@@ -117,6 +114,7 @@ const currentPoints = () => ( parseInt( HTML('points').innerHTML ) )
 const addPoints     = () => ( HTML('points').innerHTML = pointToGain(parseInt(HTML('points').innerHTML)) )
 const deductPoints  = () => ( HTML('points').innerHTML = pointToLose(parseInt(HTML('points').innerHTML)) )
 const incrementBonusPoint = () => ( HTML('points').innerHTML = pointToGain(parseInt(HTML('points').innerHTML), true) )
+
 // DOM elements ~
 const lockAll       = () => { permission = false }
 const unlockAll     = () => { permission = true }
@@ -129,6 +127,13 @@ const removeStates  = (card) => {
   }
   return card
 }
+const noState     = (card) => {
+  if( NOT( card.includes('setdown_') ||
+           card.includes('locked_') ) ) {
+    return true
+  }
+  return false
+}
 const returnCards   = (chanceSlots) => ( chanceSlots.map(c => ( HTML(c).className ) ) )
 const resetChances  = () => ( chances = [] )
 const incrementChances	  = (slot) => {
@@ -136,6 +141,8 @@ const incrementChances	  = (slot) => {
     chances.push(slot)
   }
 }
+const successCard         = (slots) => ( slots.map(slot => HTML(slot).className = 'success-card' ) )
+const failCard            = (slots) => ( slots.map(slot => HTML(slot).className = 'fail-card' ) )
 
 /**
  *  Services(Business Rules)
@@ -153,31 +160,9 @@ const createSequence      = () => {
   return array
 }
 const updateSlotsContent  = () => ( slotsContent = slots.map( slot => ( HTML(slot).className ) ) )
+
 // Bonus
-const newBonus     = (newBonus) => ( bonus = newBonus )
-const emptyBonus   = () => ( bonus = {'has': false} )
-const stackBonus   = (bonusFound) => {
-  if( NOT( bonusStack.some(b => b.card === bonusFound.card ) ) ) {
-    bonusStack.push(bonusFound)
-  }
-}
-const drawBonus    = (bonusMatch) => ( bonusStack.remove(bonusMatch) )
-const setBonus     = () => {
-  if( NOT( bonus.has || bonusStack.length === 0 ) ) {
-    newBonus(bonusStack.pop())
-    applyBonus()
-  }
-}
-const checkBonus   = (card) => {
-  if( NOT( bonus.card === card ) || bonusStack.length != 0 ) {
-    emptyBonus()
-    return
-  }
-  incrementBonusPoint()
-  newBonus(bonusStack.pop())
-  applyBonus()
-}
-const updateBonus  = () => {
+/* const updateBonus  = () => {
   let chancesStateless = returnCards(chances).map(removeStates)
   bonusList.forEach(bonusItem => {
     let stack = {'card': bonusItem.card, 'request': bonusItem.request, 'has': true}
@@ -187,62 +172,86 @@ const updateBonus  = () => {
     }
     stackBonus(stack)
   })
+}*/
+/*const stackBonus   = (bonusFound) => {
+  if( NOT( bonusStack.some(b => b.card === bonusFound.card ) ) ) {
+    bonusStack.push(bonusFound)
+  }
+}*/
+const newBonus     = (newBonus) => ( bonus = newBonus )
+const emptyBonus   = () => ( bonus = {'has': false} )
+const drawBonus    = (bonusMatch) => ( bonusStack.remove(bonusMatch) )
+const setBonus     = () => {
+  if( NOT( bonus || bonusStack.length === 0 ) ) {
+    newBonus(bonusStack.pop())
+    applyBonus()
+  }
 }
-const applyBonus   = () => ( HTML('bonus-request').innerHTML = bonus.has ? bonus.request : '' )
-// Cards
-const showAllCards = () => ( slots.forEach( s => ( HTML(s).className = removeStates(HTML(s).className) ) ) )
-const setAllCards  = () => ( slots.forEach( s => ( HTML(s).className = addSetdown(HTML(s).className ) ) ) )
-const setCards     = (order) => {
-  for(let i = 0; i < slotNumber; i++) {
-    HTML((i+1), 'slot-').className = 'setdown_'+( cards[order[i]] )
+const checkBonus   = (card) => {
+  if( bonus['card'] === card ) {
+    incrementBonusPoint()
+  }
+  if( bonusStack.length === 0 ) {
+    emptyBonus()
+  }
+  setBonus()
+}
+const applyBonus   = () => {
+  if(bonus['has']) {
+    console.log(bonus['request'])
+    HTML('bonus-request').innerHTML = bonus.request
   }
 }
 
-const lockCards    = () => {
-  for(let i = 0; i < slotNumber; i++) {
-    let card = HTML( slots[i] ).className
-    if( NOT( card.includes('setdown_') ||
-             card.includes('locked_') ) ) {
-      HTML( slots[i] ).className = addLocked(card)
+// Cards
+const getFlippedCards = () => {
+  let currentValue = []
+  slots.map( (slot) => {
+    if( noState(HTML(slot).className) ) {
+      currentValue.push(HTML(slot).className)
     }
-  }
+  })
+  return currentValue
+}
+// Quarentena
+// ----------------------------------------------------------------------------------------
+const getCard         = (cards) => {
+  let where = []
+  where.push( slots.filter(slot => HTML(slot).className === cards[0] ? true : false) )
+  where.push( slots.filter(slot => HTML(slot).className === cards[1] ? true : false) )
+  return where
+}
+// ----------------------------------------------------------------------------------------
+const resumeCard      = (card, slots) => ( slots.map(slot => HTML(slot).className = card ) )
+const showAllCards    = () => ( slots.forEach( s => ( HTML(s).className = removeStates(HTML(s).className) ) ) )
+const setAllCards     = () => ( slots.forEach( s => ( HTML(s).className = addSetdown(HTML(s).className ) ) ) )
+const setCards        = (order) => ( slots.map( (slot, index) => HTML(slot).className = 'setdown_'+ cards[order[index]] ) )
+
+const lockCards       = () => {
+  slots.map(slot => {
+    if(noState(HTML(slot).className)) {
+      HTML(slot).className = addLocked(HTML(slot).className)
+    }
+  })
   HTML('FlippedCards').innerHTML = "0"
 }
-const comparator   = () => {
-  let flippedCards = []
-  for(let i = 0; i < slotNumber; i++) {
-    let card = HTML( slots[i] ).className
-    if( NOT( card.includes('setdown_') ||
-             card.includes('locked_') ) ) {
-      flippedCards.push(card)
-    }
-  }
-  if(flippedCards[0] == flippedCards[1]) {
-    checkBonus(flippedCards[0])
-    return true
-  }
-  return false
-}
 const setCardsNotLockeds  = () => {
-  for(let i = 0; i < slotNumber; i++) {
-    let card = HTML(slots[i]).className
-    if( NOT( card.includes('setdown_') ||
-             card.includes('locked_') ) ) {
-      HTML(slots[i]).className = addSetdown(card)
+  slots.map(slot => {
+    if( noState( HTML(slot).className ) ) {
+      HTML(slot).className = addSetdown(HTML(slot).className)
     }
-  }
+  })
 }
+
 // Chances
 const incrementAttempt = () => ( HTML('attempt').innerHTML = parseInt(HTML('attempt').innerHTML)+1 )
-
 const showAll          = () => {
-  lockAll()
   showAllCards()
   time = setTimeout( ()=>{setAllCards(); unlockAll(); clearTimeout(time)}, delayStartGame )
 }
 const success 	       = () => {
-  addPoints()
   lockCards()
+  addPoints()  
 }
 const fail 		         = () => {
   deductPoints()
@@ -254,11 +263,18 @@ const resetChance      = () => {
 }
 const checkFlips       = () => {
   if( HTML('FlippedCards').innerHTML == 2 ) {
-    if( comparator() ) {
-      success()
+    let flippedCards = getFlippedCards()
+    let slots        = getCard(flippedCards)
+    
+    if( flippedCards[0] == flippedCards[1] ) {
+      lockAll()
+      checkBonus(flippedCards[0])
+      successCard(slots)
+      time = setTimeout( ()=>{success(); unlockAll(); resumeCard(card, slots); clearTimeout(time)}, delayGamePlay )
     }else {
       lockAll()
-      time = setTimeout( ()=>{fail(); unlockAll(); clearTimeout(time)}, delayGamePlay )
+      failCard(slots)
+      time = setTimeout( ()=>{fail(); unlockAll(); resumeCard(card, slots); clearTimeout(time)}, delayGamePlay )
     }
   incrementAttempt()
   updateSlotsContent()
@@ -273,31 +289,23 @@ const checkEndGame     = () => {
 }
 const resetGame        = () => {
   permission = false
-
   resetChances()
-
-  for(let i = 0; i < slotNumber; i++) {
-    HTML((i+1), 'slot-').className = 'set'
-  }
+  slots.map(slot => (HTML(slot).className = 'set'))
   HTML('main-button').style.display = 'block'
 }
+
 /**
  *  Features
  * ===================================================================== 
  */
 function startGame() {
-  permission = true
-
-  newOrder = []
-  sequence = createSequence()
-
-  for(let i = 0; i < sequence.length; i++) {
-    newOrder.push(parseInt(sequence[i]))
-  }
+  let sequence = createSequence()
+  let newOrder = sequence.map( item => parseInt(item) )
 
   setCards(newOrder)
   HTML('main-button').style.display = "none"
   showAll()
+  setBonus()
 }
 
 function flip(slot) {
@@ -311,9 +319,10 @@ function flip(slot) {
       HTML('FlippedCards').innerHTML = cardsFlippeds.toString()
     }
 
-    incrementChances(stringPlusNumber('slot-', slot))
+    // incrementChances(stringPlusNumber('slot-', slot))
     applyBonus()
     checkFlips()
-    updateBonus()
+    setBonus()
+    // updateBonus()
   }
 }
