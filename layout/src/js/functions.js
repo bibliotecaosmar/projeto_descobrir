@@ -213,15 +213,10 @@ const getFlippedCards = () => {
   })
   return currentValue
 }
-// Quarentena
-// ----------------------------------------------------------------------------------------
 const getCard         = (cards) => {
-  let where = []
-  where.push( slots.filter(slot => HTML(slot).className === cards[0] ? true : false) )
-  where.push( slots.filter(slot => HTML(slot).className === cards[1] ? true : false) )
-  return where
+  let positions = cards.map( card => slots.filter( slot => ( HTML(slot).className === card ) ? true : false ) )
+  return positions[0] === positions[1] ? positions[0] : positions
 }
-// ----------------------------------------------------------------------------------------
 const resumeCard      = (card, slots) => ( slots.map(slot => HTML(slot).className = card ) )
 const showAllCards    = () => ( slots.forEach( s => ( HTML(s).className = removeStates(HTML(s).className) ) ) )
 const setAllCards     = () => ( slots.forEach( s => ( HTML(s).className = addSetdown(HTML(s).className ) ) ) )
