@@ -29,8 +29,8 @@ const lockAll       = () => { permission = false }
 const unlockAll     = () => { permission = true }
 
  // ARRAYS
-const shorterThanBonusList  = (size) => ( (size <= bonusList.length) ? true : false )
-const hasIndexInBonusUsed   = (number) => ( ( bonusUsed.some(b => b.card === bonusList[number].card) ) ? true : false )
+const reachDrawLimit      = () => ( bonusUsed.length === bonusList.length )
+const hasIndexInBonusUsed = (number) => ( ( bonusUsed.some(b => b.card === bonusList[number].card ) ) ? true : false )
 
 // MATHEMATICAL
 const randomNum = (size) => ( Math.floor( Math.random() * size ) )

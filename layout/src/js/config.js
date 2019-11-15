@@ -71,7 +71,7 @@ let slotsContent  = [
 const bonusList      = [
   {card: 'card-chrome', request: 'Navegador(Browser) de internet'},
   {card: 'card-windows', request: 'Sistema operacional da microsoft'},
-  {card: 'card-linux', request: 'Conhecido popularmente como um sistema operacional opensource'}
+  {card: 'card-linux', request: 'É um sistema operacional opensorce'}
 ]
 let bonus
 let bonusUsed     = []

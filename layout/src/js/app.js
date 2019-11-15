@@ -15,24 +15,25 @@ const createSequence      = () => {
 }
 const sortBonusList       = () => {
   let number = randomNum(bonusList.length)
-  while ( shorterThanBonusList(bonusUsed.length) ) {
-    if( NOT( hasIndexInBonusUsed(number) ) ) {
-      return number
-    }
+  
+  while ( hasIndexInBonusUsed(number) ) {
     number = randomNum(bonusList.length)
   }
-  return ''
+  return number
 }
 
 // BONUS
+const requestBonus  = () => ( bonus ? bonus.request : '' )
 const getBonus      = () => {
-  let someBonus = sortBonusList()
-  if( NOT(someBonus) ) {
-    return bonusList[someBonus]
+  if( NOT(reachDrawLimit()) ) {
+    let someBonus = sortBonusList()
+    if( NOT( someBonus === 'empty' ) ) {
+      return bonusList[someBonus]
+    }
   }
   return ''
 }
-const newBonus     = () => ( bonus = getBonus() )
+const newBonus     = () => ( bonus = useBonus(getBonus()) )
 const checkBonus   = (card) => {
   let currentBonus = useBonus(bonus)
   if(card === currentBonus.bonus) {
@@ -40,12 +41,12 @@ const checkBonus   = (card) => {
   }
   setBonus()
 }
-const applyBonus   = () => ( HTML('bonus-request').innerHTML = bonus.request )
-const useBonus      = () => {
-  if(bonus) {
-    bonusUsed.push(bonus)
+const applyBonus   = () => ( HTML('bonus-request').innerHTML = requestBonus() )
+const useBonus      = (bonusMarked) => {
+  if(bonusMarked) {
+    bonusUsed.push(bonusMarked)
   }
-  return bonus
+  return bonusMarked
 }
 const bonusWasUsed  = (bonus) => ( bonusUsed.includes(bonus) ? true : false )
 const setBonus     = () => {
@@ -91,7 +92,7 @@ const setCardsNotLockeds  = () => {
 const incrementAttempt = () => ( HTML('attempt').innerHTML = parseInt(HTML('attempt').innerHTML)+1 )
 const showAll          = () => {
   showAllCards()
-  time = setTimeout( ()=>{setAllCards(); unlockAll(); clearTimeout(time)}, delayStartGame )
+  time = setTimeout( ()=>{setAllCards(); unlockAll();  setBonus(); clearTimeout(time)}, delayStartGame )
 }
 const success 	       = () => {
   lockCards()
@@ -148,7 +149,6 @@ function startGame() {
   setCards(newOrder)
   HTML('main-button').style.display = "none"
   showAll()
-  setBonus()
 }
 
 function flip(slot) {
@@ -163,6 +163,5 @@ function flip(slot) {
     }
     applyBonus()
     checkFlips()
-    setBonus()
   }
 }
