@@ -4,8 +4,9 @@
  */
 
 //---------__TIME__---------//
-const delayGamePlay  = 1500
-const delayStartGame = 2000
+const delayGamePlay  = 2500
+const delayStartGame = 5000
+const blinkTimeInterval = 500
 
 //--------__CARDS__---------//
 const cards          = [
@@ -66,6 +67,7 @@ let slotsContent  = [
   'set',
   'set',
 ]
+let flippedCards  = 0
 
 //---------__BONUS__---------//
 const bonusList      = [
@@ -76,8 +78,12 @@ const bonusList      = [
 let bonus
 let bonusUsed     = []
 
-//---------__NUMBERS__---------//
+//--------__NUMBERS__--------//
 let sequence	    = []
 
-//---------__PERMISSION__---------//
+//------__PERMISSION__------//
 let permission    = false
+
+//--------__OTHERS__--------//
+let blink
+let blinkSlots

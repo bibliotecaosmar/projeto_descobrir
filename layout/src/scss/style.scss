@@ -40,6 +40,12 @@ div.painel {
   width: 100%;
 }
 
+div.image {
+  width: 100%;
+  max-height: 300px;
+
+}
+
 // Background Image
 div.bg-main-blue {
   background-color: $bg;
@@ -99,6 +105,7 @@ button.main-button {
   color: $text-button;
   font-family: 'ocr';
   height: 6rem;
+  max-width: 300px;
 }
 
 /*

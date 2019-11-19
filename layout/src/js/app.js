@@ -54,20 +54,28 @@ const setBonus     = () => {
   applyBonus()
 }
 // CARDS
-const getFlippedCards = () => {
-  let currentValue = []
-  slots.map( (slot) => {
+const flipNumber      = () => {
+  let flips = 0
+  slots.map( slot => {
     if( noState(HTML(slot).className) ) {
-      currentValue.push(HTML(slot).className)
+      flips++
     }
   })
-  return currentValue
+  return flips
+}
+const getFlippedCards = () => {
+  let cards = []
+  slots.map( slot => {
+    if( noState(HTML(slot).className) ) {
+      cards.push(HTML(slot).className)
+    }
+  })
+  return cards
 }
 const getCard         = (cards) => {
   let positions = cards.map( card => slots.filter( slot => ( HTML(slot).className === card ) ) )
   return [ positions[0][0], positions[1][0] ]
 }
-const resumeCard      = (cards, slots) => ( slots.map( (slot, index) => HTML(slot).className = cards[index] ) )
 const showAllCards    = () => ( slots.forEach( s => ( HTML(s).className = removeStates(HTML(s).className) ) ) )
 const setAllCards     = () => ( slots.forEach( s => ( HTML(s).className = addSetdown(HTML(s).className ) ) ) )
 const setCards        = (order) => ( slots.map( (slot, index) => HTML(slot).className = 'setdown_'+ cards[order[index]] ) )
@@ -78,7 +86,6 @@ const lockCards       = () => {
       HTML(slot).className = addLocked(HTML(slot).className)
     }
   })
-  HTML('FlippedCards').innerHTML = "0"
 }
 const setCardsNotLockeds  = () => {
   slots.map(slot => {
@@ -104,22 +111,21 @@ const fail 		         = () => {
 }
 const resetChance      = () => {
   setCardsNotLockeds()
-  HTML('FlippedCards').innerHTML = "0"
 }
 const checkFlips       = () => {
-  if( HTML('FlippedCards').innerHTML == 2 ) {
+  if( flipNumber() === 2 ) {
     let flippedCards = getFlippedCards()
     let slots        = getCard(flippedCards)
     
     if( flippedCards[0] == flippedCards[1] ) {
       lockAll()
       checkBonus(flippedCards[0])
-      successCard(slots)
-      time = setTimeout( ()=>{resumeCard(flippedCards, slots); success(); unlockAll(); clearTimeout(time)}, delayGamePlay )
+      blinkIn(slots, 'success-card')
+      time = setTimeout( ()=>{turnOffBlink(); success(); unlockAll(); clearTimeout(time)}, delayGamePlay )
     }else {
       lockAll()
-      failCard(slots)
-      time = setTimeout( ()=>{resumeCard(flippedCards, slots); fail(); unlockAll(); clearTimeout(time)}, delayGamePlay )
+      blinkIn(slots, 'fail-card')
+      time = setTimeout( ()=>{turnOffBlink(); fail(); unlockAll(); clearTimeout(time)}, delayGamePlay )
     }
   incrementAttempt()
   checkEndGame()
@@ -153,13 +159,10 @@ function startGame() {
 
 function flip(slot) {
   if(permission) {
-    card = HTML(slot, 'slot-').className
-    cardsFlippeds = parseInt(HTML('FlippedCards').innerHTML)
+    let card = HTML(slot, 'slot-').className
    
     if( card.includes('setdown_') ) {
       HTML(slot, 'slot-').className = removeStates(card)
-      ++cardsFlippeds
-      HTML('FlippedCards').innerHTML = cardsFlippeds.toString()
     }
     applyBonus()
     checkFlips()

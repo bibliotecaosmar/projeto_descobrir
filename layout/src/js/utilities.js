@@ -71,5 +71,27 @@ const incrementChances	  = (slot) => {
     chances.push(slot)
   }
 }
-const successCard         = (slots) => ( slots.map(slot => HTML(slot).className = 'success-card' ) )
-const failCard            = (slots) => ( slots.map(slot => HTML(slot).className = 'fail-card' ) )
+const resumeCard    = (slots) => ( slots.map( slot => HTML(slot).className = ( HTML(slot).className ).split(' ')[0] ) )
+
+// BLINK EFFECT
+const blinkIn       = (slots, what) => {
+  blinkSlots = slots
+  turnOnBlink(what)
+}
+const whatBlink     = (slots) => ( blinkSlots = slots )
+const turnOnBlink   = (resultCard) => {
+  blink = setInterval(() => {
+    if( NOT( HTML(blinkSlots[0]).className.includes(' ') ) ) {
+      blinkSlots.map(slot => HTML(slot).className = HTML(slot).className+' '+resultCard)
+      return
+    }
+    blinkSlots.map( slot => HTML(slot).className = ( HTML(slot).className ).split(' ')[0] )
+  }, blinkTimeInterval)
+}
+const turnOffBlink  = () => {
+  clearTimeout(blink)
+  console.log(blinkSlots[0].includes(' '))
+  if( HTML(blinkSlots[0]).className.includes(' ') ) {
+    resumeCard(blinkSlots)
+  }
+}

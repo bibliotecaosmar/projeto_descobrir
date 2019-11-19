@@ -17,6 +17,10 @@
 div.painel {
   width: 100%; }
 
+div.image {
+  width: 100%;
+  max-height: 300px; }
+
 div.bg-main-blue {
   background-color: #11439f; }
 
@@ -67,7 +71,8 @@ button.main-button {
   background-color: #ffffff;
   color: black;
   font-family: 'ocr';
-  height: 6rem; }
+  height: 6rem;
+  max-width: 300px; }
 
 /*
 *  Dynamic Elements
