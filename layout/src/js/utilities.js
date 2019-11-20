@@ -18,6 +18,7 @@ const hasTwoInArray     = (array, value) => {
 
 const pushNotHaving		  = (array, value) => ( array.push(value) ? ( array.includes(value) ) : array)
 const stringPlusNumber 	= (string, number) => ( [string, number.toString()].join('') )
+const isPair            = (number)  =>  ( ( (number % 2) === 0 ) ? true : false )
 
 /**
  *  Subprocess Functions

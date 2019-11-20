@@ -6,10 +6,10 @@
 //---------__TIME__---------//
 const delayGamePlay  = 2500
 const delayStartGame = 5000
-const blinkTimeInterval = 500
+const blinkTimeInterval = 350
 
 //--------__CARDS__---------//
-const cards          = [
+const cards      = [
   'card-chrome',
   'card-chrome',
   'card-email',
@@ -27,7 +27,7 @@ const cards          = [
   'card-word',
   'card-word',
 ]
-const slots          = [
+const slots      = [
   'slot-1',
   'slot-2',
   'slot-3',
@@ -45,7 +45,7 @@ const slots          = [
   'slot-15',
   'slot-16',
 ]
-let slotsContent  = [
+let slotsContent = [
   'set',
   'set',
   'set',
@@ -67,22 +67,23 @@ let slotsContent  = [
   'set',
   'set',
 ]
-let flippedCards  = 0
+let flippedCards = 0
+let attempts     = 0
 
 //---------__BONUS__---------//
-const bonusList      = [
+const bonusList  = [
   {card: 'card-chrome', request: 'Navegador(Browser) de internet'},
   {card: 'card-windows', request: 'Sistema operacional da microsoft'},
   {card: 'card-linux', request: 'É um sistema operacional opensorce'}
 ]
 let bonus
-let bonusUsed     = []
+let bonusUsed    = []
 
 //--------__NUMBERS__--------//
-let sequence	    = []
+let sequence	   = []
 
 //------__PERMISSION__------//
-let permission    = false
+let permission   = false
 
 //--------__OTHERS__--------//
 let blink
