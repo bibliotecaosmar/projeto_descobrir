@@ -52,7 +52,6 @@ const useBonus      = (bonusMarked) => {
 const bonusWasUsed  = (bonus) => ( bonusUsed.includes(bonus) ? true : false )
 const setBonus      = () => {
   clearBonus()
-  console.log(attempts)
   if( isPair(attempts) ) {
     newBonus()
   }
@@ -85,7 +84,7 @@ const getFlippedCards = () => {
 }
 const getCard         = (cards) => {
   let positions = cards.map( card => slots.filter( slot => ( HTML(slot).className === card ) ) )
-  return [ positions[0][0], positions[1][0] ]
+  return ( positions[0][0] === positions[1][0] ) ? [ positions[0][0], positions[0][1] ] : [ positions[0][0], positions[1][0] ]
 }
 const showAllCards    = () => ( slots.forEach( s => ( HTML(s).className = removeStates(HTML(s).className) ) ) )
 const setAllCards     = () => ( slots.forEach( s => ( HTML(s).className = addSetdown(HTML(s).className ) ) ) )
@@ -133,6 +132,7 @@ const checkFlips        = () => {
     if( flippedCards[0] == flippedCards[1] ) {
       lockAll()
       checkBonus(flippedCards[0])
+      console.log(slots)
       blinkIn(slots, 'success-card')
       time = setTimeout( ()=>{turnOffBlink(); success(); unlockAll(); clearTimeout(time)}, delayGamePlay )
     }else {

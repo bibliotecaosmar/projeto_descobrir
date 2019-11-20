@@ -4,9 +4,9 @@
  */
 
 //---------__TIME__---------//
-const delayGamePlay  = 2500
-const delayStartGame = 5000
-const blinkTimeInterval = 350
+const delayGamePlay  = 2000
+const delayStartGame = 4000
+const blinkTimeInterval = 250
 
 //--------__CARDS__---------//
 const cards      = [

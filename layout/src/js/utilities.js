@@ -91,7 +91,6 @@ const turnOnBlink   = (resultCard) => {
 }
 const turnOffBlink  = () => {
   clearTimeout(blink)
-  console.log(blinkSlots[0].includes(' '))
   if( HTML(blinkSlots[0]).className.includes(' ') ) {
     resumeCard(blinkSlots)
   }
