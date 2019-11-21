@@ -37,13 +37,12 @@ $text-button: $typing-black;
 */
 // Screen
 div.painel {
-  width: 100%;
+  width: 100vmax;
 }
 
 div.image {
   width: 100%;
   max-height: 300px;
-
 }
 
 // Background Image
@@ -53,19 +52,18 @@ div.bg-main-blue {
 
 div.background-image {
   position: absolute;
-  width: 100%;
-  height: 120vh;
-  max-height: 135vh;
-  background: url(../asset/background-image.png) no-repeat center center fixed;
+  background: url(../asset/background-image.png) no-repeat center bottom fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
   background-color: $bg;
-  min-width: 36rem;
-  min-height: 100vh;
+  width: 100vmax;
+  height: 1200px;
+  max-height: 178vmax;
 }
 
+// Elements
 div.title {
   font-family: 'ocr';
   color: $title;
@@ -78,12 +76,21 @@ div.hub {
   font-size: 20px;
 }
 
+div.gamescreen {
+  width: auto;
+  max-width: 840px;
+  min-width: 360px;
+}
+
 div.bonus-hub {
+  @extend div.gamescreen;
   background-color: $bonus-body;
   font-family: 'ocr';
   font-size: 18px;
-  width: 100%;
+  width: 91vmax;
   height: 32px;
+  max-width: 840px;
+  min-width: 360px;
   border-radius: 8px;
 }
 
@@ -105,7 +112,7 @@ button.main-button {
   color: $text-button;
   font-family: 'ocr';
   height: 6rem;
-  max-width: 300px;
+  width: 200px;
 }
 
 /*
@@ -119,25 +126,31 @@ $locked: locked_ !default;
 div.set {
   background: url(../asset/cards/setcard.jpg) no-repeat;
   background-color: white;
-  width: 9.3125rem;
-  height: 6rem;
-  min-width: 11px;
+  width: 10vmax;
+  height: 5.7vmax;
+  min-width: 120px;
+  min-height: 85px;
+  max-height: 12.5vmax;
 }
 
 div.success-card {
   background: url(../asset/cards/success-card.jpg) no-repeat;
   background-color: white;
-  width: 9.3125rem;
-  height: 6rem;
-  min-width: 11px;
+  width: 10vmax;
+  height: 5.7vmax;
+  min-width: 120px;
+  min-height: 85px;
+  max-height: 12.5vmax;
 }
 
 div.fail-card {
   background: url(../asset/cards/fail-card.jpg) no-repeat;
   background-color: white;
-  width: 9.3125rem;
-  height: 6rem;
-  min-width: 11px;
+  width: 10vmax;
+  height: 5.7vmax;
+  min-width: 120px;
+  min-height: 85px;
+  max-height: 12.5vmax;
 }
 
 //cards
@@ -179,26 +192,35 @@ $cards: (
 @each $card, $key in $cards {
   .#{$setdown}#{map-get($key, 'name')} {
     background: url(../asset/cards/setcard.jpg) no-repeat;
-    width: 9.3125rem;
-    height: 6rem;
-    min-width: 11px;
+    background-color: white;
+    width: 10vmax;
+    height: auto;
+    min-width: 120px;
+    min-height: 85px;
+    max-height: 12.5vmax;
   }
 }
 
 @each $card, $key in $cards {
   .#{map-get($key, 'name')} {
     background: url(map-get($key, 'link')) no-repeat;
-    width: 9.3125rem;
-    height: 6rem;
-    min-width: 11px;
+    background-color: white;
+    width: 10vmax;
+    height: 5.7vmax;
+    min-width: 120px;
+    min-height: 85px;
+    max-height: 12.5vmax;
   }
 }
 
 @each $card, $key in $cards {
   .#{$locked}#{map-get($key, 'name')} {
 	  background: url(map-get($key, 'link')) no-repeat;
-    width: 9.3125rem;
-    height: 6rem;
-    min-width: 11px;
+    background-color: white;
+    width: 10vmax;
+    height: 5.7vmax;
+    min-width: 120px;
+    min-height: 85px;
+    max-height: 12.5vmax;
   }
 }

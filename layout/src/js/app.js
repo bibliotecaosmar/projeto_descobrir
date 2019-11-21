@@ -22,6 +22,33 @@ const sortBonusList       = () => {
   return number
 }
 
+// HUB MODIFICATIONS
+const updateAllCounts   = () => {
+  updateAttempts()
+  updatePoints()
+}
+
+const incrementStage    = () => ( stage = stage + 1 )
+
+const updateAttempts    = () => ( HTML('attempts').innerHTML = attempts )
+const incrementAttempts = () => ( attempts = attempts + 1 )
+const clearAttempts     = () => ( attempts = 0 )
+
+const updatePoints  = () => ( HTML('points').innerHTML = points )
+const addPoints     = () => ( points = pointToGain(points) )
+const deductPoints  = () => ( points = pointToLose(points) )
+const incrementBonusPoint = () => ( points = pointToGain( points, true ) )
+
+
+// POINTS
+const pointToGain   = (points, bonus = false) => ( bonus ? points+10 : points+5 )
+const pointToLose   = (points) => { 
+  if(points >= 2){
+    return --points
+  }
+  return 0 
+}
+
 // BONUS
 const requestBonus  = () => ( bonus ? bonus.request : '' )
 const getBonus      = () => {
@@ -37,7 +64,8 @@ const newBonus      = () => ( bonus = useBonus(getBonus()) )
 const clearBonus    = () => ( bonus = null )
 const checkBonus    = (card) => {
   let currentBonus = useBonus(bonus)
-  if(card === currentBonus.bonus) {
+  currentBonus = currentBonus ? currentBonus.bonus : null
+  if(card === currentBonus) {
     incrementBonusPoint()
   }
   setBonus()
@@ -46,8 +74,9 @@ const applyBonus    = () => ( HTML('bonus-request').innerHTML = requestBonus() )
 const useBonus      = (bonusMarked) => {
   if(bonusMarked && NOT(bonusUsed.includes(bonusMarked)) ) {
     bonusUsed.push(bonusMarked)
+    return bonusMarked
   }
-  return bonusMarked
+  return null
 }
 const bonusWasUsed  = (bonus) => ( bonusUsed.includes(bonus) ? true : false )
 const setBonus      = () => {
@@ -64,6 +93,11 @@ const hastenBonus   = (card) =>  {
   }
 }
 // CARDS
+const cards           = (stage) => ( cardsForStage[stage - 1] )
+const showAll         = () => {
+  showAllCards()
+  time = setTimeout( ()=>{setAllCards(); unlockAll();  setBonus(); clearTimeout(time)}, delayStartGame )
+}
 const flipNumber      = () => {
   let flips = 0
   slots.map( slot => {
@@ -88,7 +122,7 @@ const getCard         = (cards) => {
 }
 const showAllCards    = () => ( slots.forEach( s => ( HTML(s).className = removeStates(HTML(s).className) ) ) )
 const setAllCards     = () => ( slots.forEach( s => ( HTML(s).className = addSetdown(HTML(s).className ) ) ) )
-const setCards        = (order) => ( slots.map( (slot, index) => HTML(slot).className = 'setdown_'+ cards[order[index]] ) )
+const setCards        = (order) => ( slots.map( (slot, index) => HTML(slot).className = 'setdown_'+ cards(stage)[order[index]] ) )
 
 const lockCards       = () => {
   slots.map(slot => {
@@ -106,23 +140,18 @@ const setCardsNotLockeds  = () => {
 }
 
 // CHANCES
-const showAttempts      = () => ( HTML('attempts').innerHTML = attempts )
-const incrementAttempts = () => ( attempts = attempts+1 )
-const clearAttempts     = () => ( attempts = 0 )
-const showAll           = () => {
-  showAllCards()
-  time = setTimeout( ()=>{setAllCards(); unlockAll();  setBonus(); clearTimeout(time)}, delayStartGame )
+const resetChance       = () => {
+  setCardsNotLockeds()
 }
 const success 	        = () => {
   lockCards()
-  addPoints()  
+  addPoints()
+  updatePoints()
 }
 const fail 		          = () => {
   deductPoints()
+  updatePoints()
   resetChance()
-}
-const resetChance       = () => {
-  setCardsNotLockeds()
 }
 const checkFlips        = () => {
   if( flipNumber() === 2 ) {
@@ -132,7 +161,6 @@ const checkFlips        = () => {
     if( flippedCards[0] == flippedCards[1] ) {
       lockAll()
       checkBonus(flippedCards[0])
-      console.log(slots)
       blinkIn(slots, 'success-card')
       time = setTimeout( ()=>{turnOffBlink(); success(); unlockAll(); clearTimeout(time)}, delayGamePlay )
     }else {
@@ -141,7 +169,7 @@ const checkFlips        = () => {
       time = setTimeout( ()=>{turnOffBlink(); fail(); unlockAll(); clearTimeout(time)}, delayGamePlay )
     }
   incrementAttempts()
-  showAttempts()
+  updateAttempts()
   checkEndGame()
   setBonus()
   }
@@ -164,10 +192,10 @@ const resetGame         = () => {
  */
 function startGame() {
   let sequenceOfCards = createSequence()
-  let newOrder = sequenceOfCards.map( item => parseInt(item) )
 
-  setCards(newOrder)
+  setCards(sequenceOfCards)
   HTML('main-button').style.display = "none"
+  updateAllCounts()
   showAll()
 }
 

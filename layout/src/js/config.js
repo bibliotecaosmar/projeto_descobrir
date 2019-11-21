@@ -9,23 +9,25 @@ const delayStartGame = 4000
 const blinkTimeInterval = 250
 
 //--------__CARDS__---------//
-const cards      = [
-  'card-chrome',
-  'card-chrome',
-  'card-email',
-  'card-email',
-  'card-estabilizador',
-  'card-estabilizador',
-  'card-google',
-  'card-google',
-  'card-notebook',
-  'card-notebook',
-  'card-virus',
-  'card-virus',
-  'card-windows',
-  'card-windows',
-  'card-word',
-  'card-word',
+const cardsForStage  = [
+  [
+    'card-chrome',
+    'card-chrome',
+    'card-email',
+    'card-email',
+    'card-estabilizador',
+    'card-estabilizador',
+    'card-google',
+    'card-google',
+    'card-notebook',
+    'card-notebook',
+    'card-virus',
+    'card-virus',
+    'card-windows',
+    'card-windows',
+    'card-word',
+    'card-word',
+  ],
 ]
 const slots      = [
   'slot-1',
@@ -45,30 +47,12 @@ const slots      = [
   'slot-15',
   'slot-16',
 ]
-let slotsContent = [
-  'set',
-  'set',
-  'set',
-  'set',
-  'set',
-  'set',
-  'set',
-  'set',
-  'set',
-  'set',
-  'set',
-  'set',
-  'set',
-  'set',
-  'set',
-  'set',
-  'set',
-  'set',
-  'set',
-  'set',
-]
-let flippedCards = 0
+
+//---------__HUB__----------//
+let stage        = 1
+let points       = 0
 let attempts     = 0
+let flippedCards = 0
 
 //---------__BONUS__---------//
 const bonusList  = [
