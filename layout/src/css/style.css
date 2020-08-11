@@ -84,100 +84,100 @@ button.main-button {
 * ========================================
 */
 div.set {
-  background: url(../asset/cards/setcard.jpg) no-repeat;
+  background: url(../asset/cards/setcard.jpg) no-repeat center;
   background-color: white;
-  width: 10vmax;
-  height: 5.7vmax;
+  width: 14vmax;
+  height: 7.2vmax;
   min-width: 120px;
   min-height: 85px;
   max-height: 12.5vmax; }
 
 div.success-card {
-  background: url(../asset/cards/success-card.jpg) no-repeat;
+  background: url(../asset/cards/success-card.jpg) no-repeat center;
   background-color: white;
-  width: 10vmax;
-  height: 5.7vmax;
+  width: 14vmax;
+  height: 7.2vmax;
   min-width: 120px;
   min-height: 85px;
   max-height: 12.5vmax; }
 
 div.fail-card {
-  background: url(../asset/cards/fail-card.jpg) no-repeat;
+  background: url(../asset/cards/fail-card.jpg) no-repeat center;
   background-color: white;
-  width: 10vmax;
-  height: 5.7vmax;
+  width: 14vmax;
+  height: 7.2vmax;
   min-width: 120px;
   min-height: 85px;
   max-height: 12.5vmax; }
 
 .setdown_card-chrome {
-  background: url(../asset/cards/setcard.jpg) no-repeat;
+  background: url(../asset/cards/setcard.jpg) no-repeat center;
   background-color: white;
-  width: 10vmax;
-  height: auto;
+  width: 14vmax;
+  height: 7.2vmax;
   min-width: 120px;
   min-height: 85px;
   max-height: 12.5vmax; }
 
 .setdown_card-email {
-  background: url(../asset/cards/setcard.jpg) no-repeat;
+  background: url(../asset/cards/setcard.jpg) no-repeat center;
   background-color: white;
-  width: 10vmax;
-  height: auto;
+  width: 14vmax;
+  height: 7.2vmax;
   min-width: 120px;
   min-height: 85px;
   max-height: 12.5vmax; }
 
 .setdown_card-estabilizador {
-  background: url(../asset/cards/setcard.jpg) no-repeat;
+  background: url(../asset/cards/setcard.jpg) no-repeat center;
   background-color: white;
-  width: 10vmax;
-  height: auto;
+  width: 14vmax;
+  height: 7.2vmax;
   min-width: 120px;
   min-height: 85px;
   max-height: 12.5vmax; }
 
 .setdown_card-google {
-  background: url(../asset/cards/setcard.jpg) no-repeat;
+  background: url(../asset/cards/setcard.jpg) no-repeat center;
   background-color: white;
-  width: 10vmax;
-  height: auto;
+  width: 14vmax;
+  height: 7.2vmax;
   min-width: 120px;
   min-height: 85px;
   max-height: 12.5vmax; }
 
 .setdown_card-notebook {
-  background: url(../asset/cards/setcard.jpg) no-repeat;
+  background: url(../asset/cards/setcard.jpg) no-repeat center;
   background-color: white;
-  width: 10vmax;
-  height: auto;
+  width: 14vmax;
+  height: 7.2vmax;
   min-width: 120px;
   min-height: 85px;
   max-height: 12.5vmax; }
 
 .setdown_card-virus {
-  background: url(../asset/cards/setcard.jpg) no-repeat;
+  background: url(../asset/cards/setcard.jpg) no-repeat center;
   background-color: white;
-  width: 10vmax;
-  height: auto;
+  width: 14vmax;
+  height: 7.2vmax;
   min-width: 120px;
   min-height: 85px;
   max-height: 12.5vmax; }
 
 .setdown_card-windows {
-  background: url(../asset/cards/setcard.jpg) no-repeat;
+  background: url(../asset/cards/setcard.jpg) no-repeat center;
   background-color: white;
-  width: 10vmax;
-  height: auto;
+  width: 14vmax;
+  height: 7.2vmax;
   min-width: 120px;
   min-height: 85px;
   max-height: 12.5vmax; }
 
 .setdown_card-word {
-  background: url(../asset/cards/setcard.jpg) no-repeat;
+  background: url(../asset/cards/setcard.jpg) no-repeat center;
   background-color: white;
-  width: 10vmax;
-  height: auto;
+  width: 14vmax;
+  height: 7.2vmax;
   min-width: 120px;
   min-height: 85px;
   max-height: 12.5vmax; }
@@ -185,8 +185,8 @@ div.fail-card {
 .card-chrome {
   background: url("../asset/cards/card-chrome.jpg") no-repeat;
   background-color: white;
-  width: 10vmax;
-  height: 5.7vmax;
+  width: 14vmax;
+  height: 7.2vmax;
   min-width: 120px;
   min-height: 85px;
   max-height: 12.5vmax; }
@@ -194,8 +194,8 @@ div.fail-card {
 .card-email {
   background: url("../asset/cards/card-email.jpg") no-repeat;
   background-color: white;
-  width: 10vmax;
-  height: 5.7vmax;
+  width: 14vmax;
+  height: 7.2vmax;
   min-width: 120px;
   min-height: 85px;
   max-height: 12.5vmax; }
@@ -203,8 +203,8 @@ div.fail-card {
 .card-estabilizador {
   background: url("../asset/cards/card-estabilizador.jpg") no-repeat;
   background-color: white;
-  width: 10vmax;
-  height: 5.7vmax;
+  width: 14vmax;
+  height: 7.2vmax;
   min-width: 120px;
   min-height: 85px;
   max-height: 12.5vmax; }
@@ -212,8 +212,8 @@ div.fail-card {
 .card-google {
   background: url("../asset/cards/card-google.jpg") no-repeat;
   background-color: white;
-  width: 10vmax;
-  height: 5.7vmax;
+  width: 14vmax;
+  height: 7.2vmax;
   min-width: 120px;
   min-height: 85px;
   max-height: 12.5vmax; }
@@ -221,8 +221,8 @@ div.fail-card {
 .card-notebook {
   background: url("../asset/cards/card-notebook.jpg") no-repeat;
   background-color: white;
-  width: 10vmax;
-  height: 5.7vmax;
+  width: 14vmax;
+  height: 7.2vmax;
   min-width: 120px;
   min-height: 85px;
   max-height: 12.5vmax; }
@@ -230,8 +230,8 @@ div.fail-card {
 .card-virus {
   background: url("../asset/cards/card-virus.jpg") no-repeat;
   background-color: white;
-  width: 10vmax;
-  height: 5.7vmax;
+  width: 14vmax;
+  height: 7.2vmax;
   min-width: 120px;
   min-height: 85px;
   max-height: 12.5vmax; }
@@ -239,8 +239,8 @@ div.fail-card {
 .card-windows {
   background: url("../asset/cards/card-windows.jpg") no-repeat;
   background-color: white;
-  width: 10vmax;
-  height: 5.7vmax;
+  width: 14vmax;
+  height: 7.2vmax;
   min-width: 120px;
   min-height: 85px;
   max-height: 12.5vmax; }
@@ -248,8 +248,8 @@ div.fail-card {
 .card-word {
   background: url("../asset/cards/card-word.jpg") no-repeat;
   background-color: white;
-  width: 10vmax;
-  height: 5.7vmax;
+  width: 14vmax;
+  height: 7.2vmax;
   min-width: 120px;
   min-height: 85px;
   max-height: 12.5vmax; }
@@ -257,8 +257,8 @@ div.fail-card {
 .locked_card-chrome {
   background: url("../asset/cards/card-chrome.jpg") no-repeat;
   background-color: white;
-  width: 10vmax;
-  height: 5.7vmax;
+  width: 14vmax;
+  height: 7.2vmax;
   min-width: 120px;
   min-height: 85px;
   max-height: 12.5vmax; }
@@ -266,8 +266,8 @@ div.fail-card {
 .locked_card-email {
   background: url("../asset/cards/card-email.jpg") no-repeat;
   background-color: white;
-  width: 10vmax;
-  height: 5.7vmax;
+  width: 14vmax;
+  height: 7.2vmax;
   min-width: 120px;
   min-height: 85px;
   max-height: 12.5vmax; }
@@ -275,8 +275,8 @@ div.fail-card {
 .locked_card-estabilizador {
   background: url("../asset/cards/card-estabilizador.jpg") no-repeat;
   background-color: white;
-  width: 10vmax;
-  height: 5.7vmax;
+  width: 14vmax;
+  height: 7.2vmax;
   min-width: 120px;
   min-height: 85px;
   max-height: 12.5vmax; }
@@ -284,8 +284,8 @@ div.fail-card {
 .locked_card-google {
   background: url("../asset/cards/card-google.jpg") no-repeat;
   background-color: white;
-  width: 10vmax;
-  height: 5.7vmax;
+  width: 14vmax;
+  height: 7.2vmax;
   min-width: 120px;
   min-height: 85px;
   max-height: 12.5vmax; }
@@ -293,8 +293,8 @@ div.fail-card {
 .locked_card-notebook {
   background: url("../asset/cards/card-notebook.jpg") no-repeat;
   background-color: white;
-  width: 10vmax;
-  height: 5.7vmax;
+  width: 14vmax;
+  height: 7.2vmax;
   min-width: 120px;
   min-height: 85px;
   max-height: 12.5vmax; }
@@ -302,8 +302,8 @@ div.fail-card {
 .locked_card-virus {
   background: url("../asset/cards/card-virus.jpg") no-repeat;
   background-color: white;
-  width: 10vmax;
-  height: 5.7vmax;
+  width: 14vmax;
+  height: 7.2vmax;
   min-width: 120px;
   min-height: 85px;
   max-height: 12.5vmax; }
@@ -311,8 +311,8 @@ div.fail-card {
 .locked_card-windows {
   background: url("../asset/cards/card-windows.jpg") no-repeat;
   background-color: white;
-  width: 10vmax;
-  height: 5.7vmax;
+  width: 14vmax;
+  height: 7.2vmax;
   min-width: 120px;
   min-height: 85px;
   max-height: 12.5vmax; }
@@ -320,8 +320,8 @@ div.fail-card {
 .locked_card-word {
   background: url("../asset/cards/card-word.jpg") no-repeat;
   background-color: white;
-  width: 10vmax;
-  height: 5.7vmax;
+  width: 14vmax;
+  height: 7.2vmax;
   min-width: 120px;
   min-height: 85px;
   max-height: 12.5vmax; }

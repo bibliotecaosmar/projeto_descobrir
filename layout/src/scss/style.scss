@@ -124,30 +124,30 @@ $setdown: setdown_ !default;
 $locked: locked_ !default;
 
 div.set {
-  background: url(../asset/cards/setcard.jpg) no-repeat;
+  background: url(../asset/cards/setcard.jpg) no-repeat center;
   background-color: white;
-  width: 10vmax;
-  height: 5.7vmax;
+  width: 14vmax;
+  height: 7.2vmax;
   min-width: 120px;
   min-height: 85px;
   max-height: 12.5vmax;
 }
 
 div.success-card {
-  background: url(../asset/cards/success-card.jpg) no-repeat;
+  background: url(../asset/cards/success-card.jpg) no-repeat center;
   background-color: white;
-  width: 10vmax;
-  height: 5.7vmax;
+  width: 14vmax;
+  height: 7.2vmax;
   min-width: 120px;
   min-height: 85px;
   max-height: 12.5vmax;
 }
 
 div.fail-card {
-  background: url(../asset/cards/fail-card.jpg) no-repeat;
+  background: url(../asset/cards/fail-card.jpg) no-repeat center;
   background-color: white;
-  width: 10vmax;
-  height: 5.7vmax;
+  width: 14vmax;
+  height: 7.2vmax;
   min-width: 120px;
   min-height: 85px;
   max-height: 12.5vmax;
@@ -191,10 +191,10 @@ $cards: (
 
 @each $card, $key in $cards {
   .#{$setdown}#{map-get($key, 'name')} {
-    background: url(../asset/cards/setcard.jpg) no-repeat;
+    background: url(../asset/cards/setcard.jpg) no-repeat center;
     background-color: white;
-    width: 10vmax;
-    height: auto;
+    width: 14vmax;
+    height: 7.2vmax;
     min-width: 120px;
     min-height: 85px;
     max-height: 12.5vmax;
@@ -205,8 +205,8 @@ $cards: (
   .#{map-get($key, 'name')} {
     background: url(map-get($key, 'link')) no-repeat;
     background-color: white;
-    width: 10vmax;
-    height: 5.7vmax;
+    width: 14vmax;
+    height: 7.2vmax;
     min-width: 120px;
     min-height: 85px;
     max-height: 12.5vmax;
@@ -217,8 +217,8 @@ $cards: (
   .#{$locked}#{map-get($key, 'name')} {
 	  background: url(map-get($key, 'link')) no-repeat;
     background-color: white;
-    width: 10vmax;
-    height: 5.7vmax;
+    width: 14vmax;
+    height: 7.2vmax;
     min-width: 120px;
     min-height: 85px;
     max-height: 12.5vmax;
