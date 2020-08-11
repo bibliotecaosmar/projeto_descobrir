@@ -1,4 +1,4 @@
-# projeto_descobrir
+# Projeto /Descobrir
 Projeto voltado para a criação de um objeto de aprendizagem para iniciantes em tecnologia
 
 ## Example 1
